@@ -1,4 +1,13 @@
 <script>
+export default{
+    methods: {
+        reloadPage(){
+            setTimeout(() => {
+                window.location.reload()},1000
+            );  
+        },
+    }
+}
 
 </script>
 
@@ -20,6 +29,10 @@
                 </div>
                 <div id="icon_user_header">
                     <i id="icon_user" class="fas fa-user"></i>
+                    <ul id="login_register_header">
+                        <li><a id="login_header">Đăng nhập</a></li>
+                        <li><router-link to="/register" id="register_header">Đăng ký</router-link></li>
+                    </ul>
                 </div>
                 <div id="icon_shoping_cart_header">
                     <i class="fas fa-shopping-bag"></i>
@@ -48,10 +61,10 @@
                             SẢN PHẨM
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><router-link :to = "{name: 'Product', params: {type: 'all'}}" class="dropdown-item" href="#" >Tất cả sản phẩm</router-link></li>
-                            <li><router-link :to = "{name: 'Product', params: {type: 1}}" class="dropdown-item" href="#">Đồng hồ nam</router-link></li>
-                            <li><router-link :to = "{name: 'Product', params: {type: 2}}" class="dropdown-item" href="#">Đồng hồ nữ</router-link></li>
-                            <li><router-link :to = "{name: 'Product', params: {type: 3}}" class="dropdown-item" href="#">Phụ kiện</router-link></li>
+                            <li><router-link :to = "{name: 'Product', params: {type: 'all'}}" @click="reloadPage()" class="dropdown-item" href="#" >Tất cả sản phẩm</router-link></li>
+                            <li><router-link :to = "{name: 'Product', params: {type: 1}}" @click="reloadPage()" class="dropdown-item" href="#">Đồng hồ nam</router-link></li>
+                            <li><router-link :to = "{name: 'Product', params: {type: 2}}" @click="reloadPage()" class="dropdown-item" href="#">Đồng hồ nữ</router-link></li>
+                            <li><router-link :to = "{name: 'Product', params: {type: 3}}" @click="reloadPage()" class="dropdown-item" href="#">Phụ kiện</router-link></li>
                         </ul>
                     </li>
                     <li class="nav-item mx-3">
@@ -133,6 +146,43 @@
     height: 20px;
     text-align: center;
     font-size: 12px;
+}
 
+
+#icon_user_header{
+    border-left: 2px solid #5a5353;
+    border-right: 2px solid #5a5353;
+    padding: 0 15px;
+    position: relative;
+}
+
+#login_register_header{
+    display: none;
+    position: absolute;
+    border: 1px solid black;
+    padding: 10px 30px 10px 15px;
+    width: 150px;
+    left:-2px;
+    top: 24px;
+    z-index: 999;
+    background-color: #fff;
+}
+
+#icon_user:hover{
+    color: #1097cf;
+    cursor: pointer;
+}
+
+#icon_user_header:hover #login_register_header{
+    display: block;
+}
+
+#login_register_header li{
+    list-style: none;
+}
+
+#login_register_header a{
+    text-decoration: none;
+    color: black;
 }
 </style>
