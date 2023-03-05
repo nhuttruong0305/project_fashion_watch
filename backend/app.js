@@ -4,6 +4,7 @@ const productRouter = require("./app/routes/product.route");
 const ApiError = require("./app/api-error");
 const mongoose = require('mongoose');
 const config = require("./app/config");
+const Auth = require("./app/routes/auth");
 
 const app = express();
 
@@ -22,6 +23,11 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to home page" });
 });
 
+//route đăng ký đăng nhập
+app.use("/api/auth", Auth);
+
+
+//route cho api sản phẩm
 app.use("/api/products", productRouter);
 
 // handle 404 response
