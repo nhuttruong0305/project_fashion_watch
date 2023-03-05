@@ -12,15 +12,29 @@ export default{
     },
     methods:{
         async register(){
-            await AuthService.registerAccountUser({
-                fullname: this.fullname, 
-                email: this.email,
-                phonenumber: this.phonenumber,
-                password: this.password,
-            });
-            
-            alert("Đăng ký tài khoản thành công");
-            this.$router.push({ name: 'Home' });
+            // const user = await AuthService.registerAccountUser({
+            //     fullname: this.fullname, 
+            //     email: this.email,
+            //     phonenumber: this.phonenumber,
+            //     password: this.password,
+            // });
+            // console.log(user);
+            // alert("Đăng ký tài khoản thành công");
+            // this.$router.push({ name: 'Home' });
+        
+            try{
+                const user = await AuthService.registerAccountUser({
+                    fullname: this.fullname, 
+                    email: this.email,
+                    phonenumber: this.phonenumber,
+                    password: this.password,
+                });
+                alert("Đăng ký tài khoản thành công");
+                setTimeout(() => {this.$router.push({ name: 'Home' });},500);
+            }catch(error){
+                alert("Đăng ký tài khoản thất bại");
+            }
+        
         }
     }
 

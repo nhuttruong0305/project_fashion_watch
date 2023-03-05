@@ -9,6 +9,12 @@ exports.register = async (req, res, next) => {
         const salt = await bcrypt.genSalt(10);
         const hashed = await bcrypt.hash(req.body.password, salt);
 
+        //Tìm kiếm xem có email bị trùng không
+        const emailExist = await UserModel.findOne({email: req.body.email});
+        if(emailExist){
+            return next(new ApiError(400,"Email đã tồn tại, hãy dùng email khác"));
+        }
+
         //tạo user
         const newUser = await new UserModel({
             fullname: req.body.fullname,
