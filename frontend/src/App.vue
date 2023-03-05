@@ -1,19 +1,11 @@
 <script>
-// import HomePage from './views/HomePage.vue';
-// import About from './views/About.vue';
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
-// import Product from './views/Product.vue';
-// import DetailProduct from './views/DetailProduct.vue';
 
 export default {
   components: {
-    // HomePage,
-    // About,
     Header,
     Footer,
-    // Product,
-    // DetailProduct,
   }
 }
 
@@ -23,7 +15,6 @@ export default {
   <Header></Header>
   <main>
     <router-view></router-view>
-    <!-- <DetailProduct></DetailProduct> -->
   </main>
   <Footer></Footer>
 </template>

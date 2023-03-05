@@ -57,7 +57,7 @@ export default {
     <p id="title_breadcrumb" class="text-center">{{ getTypeProduct($route.params.type) }}</p>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb justify-content-center">
-            <li class="breadcrumb-item"><a href="">Trang chủ</a></li>&nbsp;
+            <li class="breadcrumb-item"><router-link to="/">Trang chủ</router-link></li>&nbsp;
             <li class="breadcrumb-item active" aria-current="page"
                 style="color: #1097cf; font-weight: 600; font-size: 16px;">&nbsp;{{ getTypeProduct($route.params.type) }}</li>
         </ol>
@@ -69,15 +69,10 @@ export default {
 
         <template v-for="product in products">
             <div class="col-md-3 col-6 list_item_product">
-                <!-- <a href="" class="d-block">
-                    <img :src="product.imageURL"
-                        alt="">
-                </a> -->
                 <router-link :to = "{name: 'DetailProduct', params: {id: `${product._id}`}}"  class="d-block">
                     <img :src="product.imageURL"
                         alt="">
                 </router-link>
-                <!-- <a href="" class="d-block text-center mt-3">{{product.productname}}</a> -->
                 <router-link :to = "{name: 'DetailProduct', params: {id: `${product._id}`}}" class="d-block text-center mt-3">{{ product.productname }}</router-link>
                 <p class="text-center">{{ product.price }}</p>
             </div>

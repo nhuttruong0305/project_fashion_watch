@@ -14,7 +14,7 @@ export default {
         <p id="title_breadcrumb" class="text-center">ĐỒNG HỒ ĐEO TAY CHÍNH HÃNG</p>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="">Trang chủ</a></li>&nbsp;
+                <li class="breadcrumb-item"><router-link to="/">Trang chủ</router-link></li>&nbsp;
                 <li class="breadcrumb-item active" aria-current="page"
                     style="color: #1097cf; font-weight: 600; font-size: 16px;">&nbsp;Đồng hồ đeo tay chính hãng</li>
             </ol>
