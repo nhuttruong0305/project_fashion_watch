@@ -8,6 +8,7 @@ export default {
 </script>
 
 <template>
+    <title>Trang chủ</title>
     <div>
         <img src="../assets/img/home/banner-carousel-1.png" class="d-block w-100" alt="">
     </div>

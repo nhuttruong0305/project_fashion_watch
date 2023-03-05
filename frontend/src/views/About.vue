@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-    
+    <title>Giới thiệu</title>
     <div id="breadcrumb_background">
         <p id="title_breadcrumb" class="text-center">ĐỒNG HỒ ĐEO TAY CHÍNH HÃNG</p>
         <nav aria-label="breadcrumb">

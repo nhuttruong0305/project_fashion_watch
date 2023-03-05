@@ -5,11 +5,18 @@ export default {
 
     data() {
         return {
-            products: []
+            products: [],
+            type_of_product: '',
         }
     },
 
-    updated() {
+    // watch: {
+    //     type_of_product(newValue, oldValue){
+    //         this.getProductByType();
+    //     }
+    // },
+
+    mounted() {
         this.getProductByType()
     },
 
@@ -62,11 +69,16 @@ export default {
 
         <template v-for="product in products">
             <div class="col-md-3 col-6 list_item_product">
-                <a href="" class="d-block">
+                <!-- <a href="" class="d-block">
                     <img :src="product.imageURL"
                         alt="">
-                </a>
-                <a href="" class="d-block text-center mt-3">{{product.productname}}</a>
+                </a> -->
+                <router-link :to = "{name: 'DetailProduct', params: {id: `${product._id}`}}"  class="d-block">
+                    <img :src="product.imageURL"
+                        alt="">
+                </router-link>
+                <!-- <a href="" class="d-block text-center mt-3">{{product.productname}}</a> -->
+                <router-link :to = "{name: 'DetailProduct', params: {id: `${product._id}`}}" class="d-block text-center mt-3">{{ product.productname }}</router-link>
                 <p class="text-center">{{ product.price }}</p>
             </div>
         </template>

@@ -10,9 +10,9 @@ class ProductService{
         return (await this.api.get(`/${type}`)).data;
     }
 
-    //Lấy thông tin chi tiết sản phẩm
+    //Lấy thông tin chi tiết 1 sản phẩm
     async getDetailProduct(id){
-        return (await this.api.get(`/detail/id`)).data;
+        return (await this.api.get(`/detail/${id}`)).data;
     }
 }
 
