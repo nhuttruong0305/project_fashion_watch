@@ -6,15 +6,12 @@ export default {
     data() {
         return {
             products: [],
-            type_of_product: '',
         }
     },
 
-    // watch: {
-    //     type_of_product(newValue, oldValue){
-    //         this.getProductByType();
-    //     }
-    // },
+    watch: {
+        '$route': 'getProductByType',
+    },
 
     created() {
         this.getProductByType()

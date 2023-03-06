@@ -1,12 +1,12 @@
 <script>
 export default{
-    methods: {
-        reloadPage(){
-            setTimeout(() => {
-                window.location.reload()},1000
-            );  
-        },
-    }
+    // methods: {
+    //     reloadPage(){
+    //         setTimeout(() => {
+    //             window.location.reload()},10
+    //         );  
+    //     },
+    // }
 }
 
 </script>
@@ -61,10 +61,15 @@ export default{
                             SẢN PHẨM
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><router-link :to = "{name: 'Product', params: {type: 'all'}}" @click="reloadPage()" class="dropdown-item" href="#" >Tất cả sản phẩm</router-link></li>
+                            <!-- <li><router-link :to = "{name: 'Product', params: {type: 'all'}}" @click="reloadPage()" class="dropdown-item" href="#" >Tất cả sản phẩm</router-link></li>
                             <li><router-link :to = "{name: 'Product', params: {type: 1}}" @click="reloadPage()" class="dropdown-item" href="#">Đồng hồ nam</router-link></li>
                             <li><router-link :to = "{name: 'Product', params: {type: 2}}" @click="reloadPage()" class="dropdown-item" href="#">Đồng hồ nữ</router-link></li>
-                            <li><router-link :to = "{name: 'Product', params: {type: 3}}" @click="reloadPage()" class="dropdown-item" href="#">Phụ kiện</router-link></li>
+                            <li><router-link :to = "{name: 'Product', params: {type: 3}}" @click="reloadPage()" class="dropdown-item" href="#">Phụ kiện</router-link></li> -->
+                        
+                            <li><router-link :to = "{name: 'Product', params: {type: 'all'}}" class="dropdown-item" href="#" >Tất cả sản phẩm</router-link></li>
+                            <li><router-link :to = "{name: 'Product', params: {type: 1}}" class="dropdown-item" href="#">Đồng hồ nam</router-link></li>
+                            <li><router-link :to = "{name: 'Product', params: {type: 2}}" class="dropdown-item" href="#">Đồng hồ nữ</router-link></li>
+                            <li><router-link :to = "{name: 'Product', params: {type: 3}}" class="dropdown-item" href="#">Phụ kiện</router-link></li>
                         </ul>
                     </li>
                     <li class="nav-item mx-3">
