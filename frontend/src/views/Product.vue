@@ -50,6 +50,7 @@ export default {
 </script>
 
 <template>
+<!-- template đã check     -->
     <div id="breadcrumb_background">
     <p id="title_breadcrumb" class="text-center">{{ getTypeProduct($route.params.type) }}</p>
     <nav aria-label="breadcrumb">
@@ -79,6 +80,7 @@ export default {
 </template>
 
 <style scoped>
+/* css đã check */
 #breadcrumb_background {
     background-image: url("../assets/img/breadcrum_bg1.webp");
     background-position: center;

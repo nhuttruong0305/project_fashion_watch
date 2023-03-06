@@ -33,6 +33,7 @@ export default{
 </script>
 
 <template>
+<!-- template đã check, nhớ bổ sung trang liên hệ và tin tức     -->
     <header>
     <div id="container_header" class="container">
         <div class="row">
@@ -43,7 +44,7 @@ export default{
                 <div class="d-flex align-items-center justify-content-end" style="height: 100%;">
                     <!-- <FormSearchProductHeader></FormSearchProductHeader> -->
                     <div id="form_search_product_header" class="d-flex align-items-center justify-content-around">
-                    <input type="text" placeholder="Tìm sản phẩm" name="" id="input_search_header">
+                    <input type="text" placeholder="Tìm sản phẩm" id="input_search_header">
                     <button id="search_btn_header" class="btn btn-primary">
                         <i id="search_icon" class="fas fa-search"></i>
                     </button>
@@ -63,7 +64,7 @@ export default{
 
                 </div>
                 <div id="icon_shoping_cart_header">
-                    <i class="fas fa-shopping-bag"></i>
+                    <router-link to="/cart" id="icon_cart_header" class="fas fa-shopping-bag"></router-link>
                     <span id="count_product_header"> 0 </span>
                 </div>
                 <!-- form search ở trên -->
@@ -100,9 +101,11 @@ export default{
                     </li>
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="#">TIN TỨC</a>
+                        <!-- bổ sung sau khi thêm trang tin tức -->
                     </li>
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="#">LIÊN HỆ</a>
+                        <!-- bổ sung sau khi thêm trang liên hệ -->
                     </li>
                 </ul>
             </div>
@@ -112,6 +115,7 @@ export default{
 </template>
 
 <style scoped>
+/* css đã check */
 #cover_nav {
     margin-top: 27px;
     background-color: #1097cf;
@@ -151,13 +155,6 @@ export default{
     background-color: #1097cf;
 }
 
-#icon_user_header{
-    margin:0 20px;
-    padding: 0 10px 0 10px;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-}
-
 #icon_shoping_cart_header{
     position: relative;
 }
@@ -180,7 +177,8 @@ export default{
 #icon_user_header{
     border-left: 2px solid #5a5353;
     border-right: 2px solid #5a5353;
-    padding: 0 15px;
+    margin:0 20px;
+    padding: 0 10px 0 10px;
     position: relative;
 }
 
@@ -213,5 +211,9 @@ export default{
     text-decoration: none;
     color: black;
     cursor: pointer;
+}
+
+#icon_cart_header{
+    color: pink;
 }
 </style>

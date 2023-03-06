@@ -16,7 +16,6 @@ export default{
                     email: this.email,
                     password: this.password,
                 });
-                // console.log(user);
 
                 //Lưu thông tin đăng nhập lên localStorage
                 localStorage.setItem('UserLogin', JSON.stringify(user));
@@ -36,6 +35,7 @@ export default{
 </script>
 
 <template>
+    <!-- template đã check -->
     <div id="breadcrumb_background">
         <p id="title_breadcrumb" class="text-center">ĐĂNG NHẬP</p>
         <nav aria-label="breadcrumb">

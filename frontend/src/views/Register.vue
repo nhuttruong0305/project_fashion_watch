@@ -32,6 +32,7 @@ export default{
 </script>
 
 <template>
+<!-- template đã check     -->
     <div id="breadcrumb_background">
         <p id="title_breadcrumb" class="text-center">ĐĂNG KÝ TÀI KHOẢN</p>
         <nav aria-label="breadcrumb">
@@ -75,9 +76,7 @@ export default{
                     <label for="password_repeat_register" class="form-label">Nhập lại mật khẩu</label>
                     <input type="password" name="password_repeat_register" class="form-control" id="password_repeat_register">
                 </div> -->
-                <button type="submit" name="btn_register" class="btn btn-primary d-block w-100">Tạo tài khoản</button>
- 
-
+                <button type="submit" name="btn_register" class="btn btn-primary d-block w-100">Tạo tài khoản</button> 
             </form>
             <div class="col-lg"></div>
         </div>
@@ -85,6 +84,7 @@ export default{
 </template>
 
 <style scoped>
+/* css đã check */
 #breadcrumb_background {
     background-image: url("../assets/img/breadcrum_bg1.webp");
     background-position: center;

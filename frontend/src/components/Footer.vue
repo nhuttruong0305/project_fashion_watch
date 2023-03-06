@@ -1,4 +1,5 @@
 <template>
+<!-- template đã check, nhớ bổ sung link trang góp ý     -->
     <div id="top_footer">
         <div class="container">
             <div class="row">
@@ -40,8 +41,9 @@
                     </div>
                     <div class="col-sm-6 col-lg-3">
                         <h4 class="main_footer_title mb-4">VỀ CHÚNG TÔI</h4>
-                        <p><a href="" style="text-decoration: none; color: #fff;">Giới thiệu</a></p>
+                        <p><router-link to="/about" style="text-decoration: none; color: #fff;">Giới thiệu</router-link></p>
                         <p><a href="" style="text-decoration: none; color: #fff;">Gửi góp ý, khiếu nại</a></p>
+                        <!-- bổ sung chỗ này khi thêm trang góp ý -->
                     </div>
                     <div class="col-sm-6 col-lg-3">
                         <h4 class="main_footer_title mb-4">HỖ TRỢ KHÁCH HÀNG</h4>
@@ -77,12 +79,13 @@
 </template>
 
 <style scoped>
-    #top_footer{
+/* css ở đây đã check */
+#top_footer{
     background-color: #f5f5f5;
     padding: 10px 0px 10px 0px;
     /* the distance between footer and main here */
     margin-top: 35px; 
-    }
+}
 footer{
     background-color: #fff;
     padding-top: 40px;

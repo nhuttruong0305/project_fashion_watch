@@ -5,6 +5,7 @@ import ProductService from '../services/product.service';
         data() {
             return {
                 detailproducts: {},
+                quantity: 1,
             }
         },
 
@@ -26,6 +27,11 @@ import ProductService from '../services/product.service';
                 }else{
                     return "Phụ kiện";
                 }
+            },
+
+            addProductInCart(){
+                const cart = JSON.parse(localStorage.getItem("Cart"));
+                if(typeof cart[this.detailproducts._id] === "undefined"){}
             }
         }
     }
@@ -33,6 +39,7 @@ import ProductService from '../services/product.service';
 </script>
 
 <template>
+<!-- template ở đây đã check -->
     <title>Chi tiết sản phẩm</title>
     <div id="breadcrumb_background">
         <p id="title_breadcrumb" class="text-center">CHI TIẾT SẢN PHẨM</p>
@@ -71,19 +78,18 @@ import ProductService from '../services/product.service';
                     {{detailproducts.description}}
                 </p>
 
-                <form id="form_add_into_cart" method="post" class="row mt-5" action="?action=cart">
+                <div class="row mt-5">
                     <div class="col-3">
                         <label for="amount_product_detail_product"
                             style="color: #1097cf; font-size: 16px; font-weight: 600;">Số lượng</label>
                     </div>
                     <div class="col-9">
                         <input type="number" id="amount_product_detail_product" class="col-7 mx-sm-3" min="1"
-                            name="quantity" value="1">
+                            name="quantity" v-model="quantity">
                     </div>
-                    <input type="hidden" name="id_of_product" value="<?php echo $detail_of_product['id'];?>">
-                    <button type="submit" id="btn_add_into_cart" name="btn_add_into_cart" class="btn">Thêm vào giỏ
+                    <button id="btn_add_into_cart" name="btn_add_into_cart" class="btn">Thêm vào giỏ
                         hàng</button>
-                </form>
+                </div>
                 <hr>
                 <div id="service_detail_product" class="row">
                     <div class="col-md-6 mt-3">
@@ -113,6 +119,8 @@ import ProductService from '../services/product.service';
 </template>
 
 <style scoped>
+
+/* css ở đây đã check */
 #breadcrumb_background {
     background-image: url("../assets/img/breadcrum_bg1.webp");
     background-position: center;
@@ -192,6 +200,10 @@ import ProductService from '../services/product.service';
     color: #fff;
     font-weight: 600;
     border-radius: 0px;
+}
+
+#service_detail_product img{
+    margin-right: 10px;
 }
 
 </style>

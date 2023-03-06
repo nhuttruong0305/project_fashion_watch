@@ -1,14 +1,5 @@
-<script>
-import Header from '../components/Header.vue';
-export default {
-    components: {
-        Header,
-    }
-}
-
-</script>
-
 <template>
+<!-- template đã check     -->
     <title>Giới thiệu</title>
     <div id="breadcrumb_background">
         <p id="title_breadcrumb" class="text-center">ĐỒNG HỒ ĐEO TAY CHÍNH HÃNG</p>
@@ -31,6 +22,7 @@ export default {
 </template>
 
 <style scoped>
+/* css đã check */
 #breadcrumb_background{
     background-image: url("../assets/img/breadcrum_bg1.webp");
     background-position: center;
