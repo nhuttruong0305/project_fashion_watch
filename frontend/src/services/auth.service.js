@@ -9,6 +9,11 @@ class AuthService{
     async registerAccountUser(data){
         return (await this.api.post('/register',data)).data;
     }
+
+    //Đăng nhập
+    async loginAccountUser(data){
+        return (await this.api.post('/login',data)).data;
+    }
 }
 
 export default new AuthService();

@@ -4,6 +4,7 @@ import About from "@/views/About.vue";
 import Product from "@/views/Product.vue";
 import DetailProduct from "@/views/DetailProduct.vue";
 import Register from "@/views/Register.vue";
+import Login from "@/views/Login.vue";
 
 const routes = [
     {
@@ -30,7 +31,13 @@ const routes = [
         path: "/register",
         name: "Register",
         component: Register
-    }
+    },
+    {
+        path: "/login",
+        name: "Login",
+        component: Login
+    },
+
 ];
 
 const router = createRouter({

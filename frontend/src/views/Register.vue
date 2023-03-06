@@ -11,17 +11,7 @@ export default{
         } 
     },
     methods:{
-        async register(){
-            // const user = await AuthService.registerAccountUser({
-            //     fullname: this.fullname, 
-            //     email: this.email,
-            //     phonenumber: this.phonenumber,
-            //     password: this.password,
-            // });
-            // console.log(user);
-            // alert("Đăng ký tài khoản thành công");
-            // this.$router.push({ name: 'Home' });
-        
+        async register(){    
             try{
                 const user = await AuthService.registerAccountUser({
                     fullname: this.fullname, 
@@ -29,15 +19,14 @@ export default{
                     phonenumber: this.phonenumber,
                     password: this.password,
                 });
+                console.log(user);
                 alert("Đăng ký tài khoản thành công");
-                setTimeout(() => {this.$router.push({ name: 'Home' });},500);
+                this.$router.push({ name: 'Login' });
             }catch(error){
-                alert("Đăng ký tài khoản thất bại");
+                alert("Email đã được đăng ký, vui lòng sử dụng email khác");
             }
-        
         }
     }
-
 }
     
 </script>
@@ -60,7 +49,7 @@ export default{
             <div class="col-lg"></div>
             <form @submit.prevent="register()" class="col" id="form_register" style="padding: 20px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"> 
                 <div id="nav_form_login" class="row border-bottom">
-                    <div class="col text-center nav_login_register border-end"><a id="switch_login">Đăng nhập</a></div> 
+                    <div class="col text-center nav_login_register border-end"><router-link to="/login" id="switch_login">Đăng nhập</router-link></div> 
                     <div class="col text-center nav_login_register"><a style="color: black; pointer-events: none;">Đăng ký</a></div>
                 </div>
 
@@ -141,6 +130,14 @@ export default{
 
 .nav_login_register a{
     text-decoration: none;
+}
+
+#switch_login:hover{
+    color: #1097cf;
+}
+
+#switch_login{
+    color: #999;
 }
 
 </style>

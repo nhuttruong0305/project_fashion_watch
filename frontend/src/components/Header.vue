@@ -1,12 +1,33 @@
 <script>
 export default{
-    // methods: {
-    //     reloadPage(){
-    //         setTimeout(() => {
-    //             window.location.reload()},10
-    //         );  
-    //     },
-    // }
+    data(){
+        return{
+            isLogin: false,
+            fullname: '',
+        }
+    },
+
+    watch: {
+        '$route': 'checkUserLogin',
+    },
+
+    methods: {
+        checkUserLogin(){
+            if(localStorage.getItem("UserLogin")){
+                this.isLogin = true;
+                const userInfo = JSON.parse(localStorage.getItem("UserLogin"));
+                this.fullname = userInfo.fullname;
+            }else{
+                this.isLogin = false;
+            }
+        },
+
+        logOut(){
+            localStorage.removeItem("UserLogin");
+            this.checkUserLogin();
+            this.$router.push({ name: 'Home' });
+        }
+    }
 }
 
 </script>
@@ -29,10 +50,17 @@ export default{
                 </div>
                 <div id="icon_user_header">
                     <i id="icon_user" class="fas fa-user"></i>
-                    <ul id="login_register_header">
-                        <li><a id="login_header">Đăng nhập</a></li>
+
+                    <ul v-if="isLogin == false" id="login_register_header">
+                        <li><router-link to="/login" id="login_header">Đăng nhập</router-link></li>
                         <li><router-link to="/register" id="register_header">Đăng ký</router-link></li>
                     </ul>
+                    <!-- Nếu đã đăng nhập thì hiện 2 dòng dưới -->
+                    <ul v-else id="login_register_header">
+                        <li><a id="login_header">{{ fullname }}</a></li>
+                        <li><a id="register_header" @click="logOut()">Đăng xuất</a></li>
+                    </ul>
+
                 </div>
                 <div id="icon_shoping_cart_header">
                     <i class="fas fa-shopping-bag"></i>
@@ -61,11 +89,6 @@ export default{
                             SẢN PHẨM
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <!-- <li><router-link :to = "{name: 'Product', params: {type: 'all'}}" @click="reloadPage()" class="dropdown-item" href="#" >Tất cả sản phẩm</router-link></li>
-                            <li><router-link :to = "{name: 'Product', params: {type: 1}}" @click="reloadPage()" class="dropdown-item" href="#">Đồng hồ nam</router-link></li>
-                            <li><router-link :to = "{name: 'Product', params: {type: 2}}" @click="reloadPage()" class="dropdown-item" href="#">Đồng hồ nữ</router-link></li>
-                            <li><router-link :to = "{name: 'Product', params: {type: 3}}" @click="reloadPage()" class="dropdown-item" href="#">Phụ kiện</router-link></li> -->
-                        
                             <li><router-link :to = "{name: 'Product', params: {type: 'all'}}" class="dropdown-item" href="#" >Tất cả sản phẩm</router-link></li>
                             <li><router-link :to = "{name: 'Product', params: {type: 1}}" class="dropdown-item" href="#">Đồng hồ nam</router-link></li>
                             <li><router-link :to = "{name: 'Product', params: {type: 2}}" class="dropdown-item" href="#">Đồng hồ nữ</router-link></li>
@@ -189,5 +212,6 @@ export default{
 #login_register_header a{
     text-decoration: none;
     color: black;
+    cursor: pointer;
 }
 </style>
