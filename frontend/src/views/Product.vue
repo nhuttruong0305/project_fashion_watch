@@ -72,7 +72,7 @@ export default {
                         alt="">
                 </router-link>
                 <router-link :to = "{name: 'DetailProduct', params: {id: `${product._id}`}}" class="d-block text-center mt-3">{{ product.productname }}</router-link>
-                <p class="text-center">{{ product.price }}</p>
+                <p class="text-center">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}}</p>
             </div>
         </template>
         </div>

@@ -26,7 +26,12 @@ export default{
             localStorage.removeItem("UserLogin");
             this.checkUserLogin();
             this.$router.push({ name: 'Home' });
+        },
+
+        getNumberOfProductInCart(){
+            return JSON.parse(localStorage.getItem("Cart")).length;
         }
+
     }
 }
 
@@ -65,7 +70,7 @@ export default{
                 </div>
                 <div id="icon_shoping_cart_header">
                     <router-link to="/cart" id="icon_cart_header" class="fas fa-shopping-bag"></router-link>
-                    <span id="count_product_header"> 0 </span>
+                    <span id="count_product_header"> {{ getNumberOfProductInCart() }} </span>
                 </div>
                 <!-- form search ở trên -->
                 </div>
@@ -214,6 +219,6 @@ export default{
 }
 
 #icon_cart_header{
-    color: pink;
+    color: #1097cf;
 }
 </style>

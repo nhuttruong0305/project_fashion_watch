@@ -103,7 +103,7 @@ import ProductService from '../services/product.service';
                 <i class="far fa-clock"></i>
                 <hr>
                 <p id="price_of_detail_product" class="text-center"><span>
-                    {{detailproducts.price}}
+                    {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(detailproducts.price)}}
                     </span></p>
                 <p>
                     {{detailproducts.description}}
