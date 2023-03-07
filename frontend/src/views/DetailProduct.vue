@@ -30,12 +30,43 @@ import ProductService from '../services/product.service';
             },
 
             addProductInCart(){
-                const cart = JSON.parse(localStorage.getItem("Cart"));
-                if(typeof cart[this.detailproducts._id] === "undefined"){}
+                let cart = [];
+                if(JSON.parse(localStorage.getItem("Cart")) == null){
+                    cart.push({
+                        '_id': this.detailproducts._id,
+                        'productname': this.detailproducts.productname,
+                        'price': this.detailproducts.price,
+                        'imageURL': this.detailproducts.imageURL,
+                        'quantity': this.quantity
+                    });
+                }else{
+                    cart = JSON.parse(localStorage.getItem("Cart"));
+                    //Chạy vòng lặp kiểm tra xem sản phẩm có tồn tại trong Cart không
+                    let state_of_existence_of_product = false;
+                    for(let i = 0; i < cart.length; i++){
+                        if(cart[i]._id == this.detailproducts._id){
+                            state_of_existence_of_product = true;
+                            cart[i].quantity +=this.quantity;
+                            break;
+                        }
+                    }
+                    //Nếu sản phẩm chưa có trong cart
+                    if(state_of_existence_of_product == false){
+                        cart.push({
+                            '_id': this.detailproducts._id,
+                            'productname': this.detailproducts.productname,
+                            'price': this.detailproducts.price,
+                            'imageURL': this.detailproducts.imageURL,
+                            'quantity': this.quantity
+                        });
+                    }
+                }
+                localStorage.setItem("Cart", JSON.stringify(cart));
+                alert("Đã thêm sản phẩm vào giỏ hàng");
+                this.$router.push({ name: 'Cart' });
             }
         }
     }
-
 </script>
 
 <template>
@@ -87,7 +118,7 @@ import ProductService from '../services/product.service';
                         <input type="number" id="amount_product_detail_product" class="col-7 mx-sm-3" min="1"
                             name="quantity" v-model="quantity">
                     </div>
-                    <button id="btn_add_into_cart" name="btn_add_into_cart" class="btn">Thêm vào giỏ
+                    <button @click="addProductInCart()" id="btn_add_into_cart" name="btn_add_into_cart" class="btn">Thêm vào giỏ
                         hàng</button>
                 </div>
                 <hr>

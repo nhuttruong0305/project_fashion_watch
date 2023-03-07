@@ -6,8 +6,14 @@ export default{
         }
     },
 
-    methods:{
+    created() {
+        this.getProductInCart();
+    },
 
+    methods:{
+        getProductInCart(){
+            this.list_of_products_in_cart = JSON.parse(localStorage.getItem("Cart"));
+        }
     }
 }   
     
@@ -29,25 +35,15 @@ export default{
         </div>
         <div class="row" id="cart_body">
             <!-- Mỗi item trong vòng lặp v-for -->
-            <div class="d-flex cart_body_container">
-                <div class="cart_body_item" style="width: 18%; padding: 40px 0;"><img class="d-block" style="width: 50%; margin: 0 auto;" src="https://bizweb.dktcdn.net/100/438/171/products/sp10-c071025e-52d6-4c86-8e35-21f600ee136b.jpg?v=1632724245347" alt=""></div>
-                <div class="cart_body_item" style="width: 32%">Black Link</div>
-                <div class="cart_body_item" style="width: 17%">3.200.000 đ</div>
-                <div class="cart_body_item" style="width: 14%">2</div>
-                <div class="cart_body_item" style="width: 14%">6.400.000 đ</div>
-                <div style="margin-left: 25px;text-align: center; line-height: 170px;"><i class="fa-solid fa-trash"></i></div>
-            </div>
-            <!-- Mỗi item trong vòng lặp v-for -->
-            <div class="d-flex cart_body_container">
-                <div class="cart_body_item" style="width: 18%; padding: 40px 0;"><img class="d-block" style="width: 50%; margin: 0 auto;" src="https://bizweb.dktcdn.net/100/438/171/products/sp10-c071025e-52d6-4c86-8e35-21f600ee136b.jpg?v=1632724245347" alt=""></div>
-                <div class="cart_body_item" style="width: 32%">Black Link</div>
-                <div class="cart_body_item" style="width: 17%">3.200.000 đ</div>
-                <div class="cart_body_item" style="width: 14%">2</div>
-                <div class="cart_body_item" style="width: 14%">6.400.000 đ</div>
+            <div v-for="product in list_of_products_in_cart" class="d-flex cart_body_container">
+                <div class="cart_body_item" style="width: 18%; padding: 40px 0;"><img class="d-block" style="width: 50%; margin: 0 auto;" :src="product.imageURL" alt=""></div>
+                <div class="cart_body_item" style="width: 32%">{{ product.productname }}</div>
+                <div class="cart_body_item" style="width: 17%">{{ product.price }}</div>
+                <div class="cart_body_item" style="width: 14%">{{ product.quantity }}</div>
+                <div class="cart_body_item" style="width: 14%">{{ product.price*product.quantity }}</div>
                 <div style="margin-left: 25px;text-align: center; line-height: 170px;"><i class="fa-solid fa-trash"></i></div>
             </div>
         </div>
-
     </div>
 </template>
 
