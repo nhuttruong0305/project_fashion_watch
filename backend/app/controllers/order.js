@@ -1,11 +1,18 @@
 const OrderModel = require("../models/order");
 const ApiError = require("../api-error");
 
-//Tạo đơn hàng (đã chạy đúng)
+//Tạo đơn hàng 
 exports.createOrder = async (req, res, next) => {
     const OrderInfo = new OrderModel(req.body);
     try{
         const newOrder = await OrderInfo.save();
+
+        //Chạy vòng lặp trừ amountinstock trong products ra
+        const list_products_in_cart = req.body.products;
+        for(let i = 0; i < list_products_in_cart.length; i++){
+            
+        }
+
         return res.send(newOrder);
     }catch(error){
         return next(new ApiError(500, "Có lỗi xảy ra khi tạo đơn hàng"));

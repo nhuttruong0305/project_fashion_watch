@@ -29,6 +29,25 @@ import ProductService from '../services/product.service';
                 }
             },
 
+            limitedQuantityAdded(){
+                const cart = JSON.parse(localStorage.getItem("Cart"));
+                if(cart == null || cart.length == 0){
+                    return this.detailproducts.amountinstock;
+                }
+                let isExistInCart = false;
+                if(cart != null){
+                    for(let i = 0; i < cart.length; i++){
+                        if(cart[i]._id == this.detailproducts._id){
+                            isExistInCart = true;
+                            return this.detailproducts.amountinstock-cart[i].quantity;
+                        }
+                    }
+                    if(isExistInCart == false){
+                        return this.detailproducts.amountinstock;
+                    }
+                }  
+            },
+
             addProductInCart(){
                 let cart = [];
                 if(JSON.parse(localStorage.getItem("Cart")) == null){
@@ -37,7 +56,8 @@ import ProductService from '../services/product.service';
                         'productname': this.detailproducts.productname,
                         'price': this.detailproducts.price,
                         'imageURL': this.detailproducts.imageURL,
-                        'quantity': this.quantity
+                        'quantity': this.quantity,
+                        'max_quantity': this.detailproducts.amountinstock,
                     });
                 }else{
                     cart = JSON.parse(localStorage.getItem("Cart"));
@@ -57,7 +77,8 @@ import ProductService from '../services/product.service';
                             'productname': this.detailproducts.productname,
                             'price': this.detailproducts.price,
                             'imageURL': this.detailproducts.imageURL,
-                            'quantity': this.quantity
+                            'quantity': this.quantity,
+                            'max_quantity': this.detailproducts.amountinstock,
                         });
                     }
                 }
@@ -109,16 +130,19 @@ import ProductService from '../services/product.service';
                     {{detailproducts.description}}
                 </p>
 
+                <p v-if="detailproducts.amountinstock!=0" class="product_availability_status">Còn {{ detailproducts.amountinstock }} sản phẩm &nbsp;&nbsp;<span><i class="fa-solid fa-check-double"></i></span></p>
+                <p v-if="detailproducts.amountinstock==0" class="product_availability_status">Hết hàng&nbsp;&nbsp;<span><i class="fa-solid fa-xmark"></i></span></p>
+
                 <div class="row mt-5">
                     <div class="col-3">
                         <label for="amount_product_detail_product"
                             style="color: #1097cf; font-size: 16px; font-weight: 600;">Số lượng</label>
                     </div>
                     <div class="col-9">
-                        <input type="number" id="amount_product_detail_product" class="col-7 mx-sm-3" min="1"
+                        <input type="number" id="amount_product_detail_product" class="col-7 mx-sm-3" min="1" :max="limitedQuantityAdded()"
                             name="quantity" v-model="quantity">
                     </div>
-                    <button @click="addProductInCart()" id="btn_add_into_cart" name="btn_add_into_cart" class="btn">Thêm vào giỏ
+                    <button @click="addProductInCart()" :disabled="limitedQuantityAdded()==0" id="btn_add_into_cart" name="btn_add_into_cart" class="btn">Thêm vào giỏ
                         hàng</button>
                 </div>
                 <hr>
@@ -215,6 +239,11 @@ import ProductService from '../services/product.service';
     display: block;
     font-weight: 600;
     color: #fff;
+}
+.product_availability_status{
+    font-size: 25px;
+    font-weight: 600;
+    color: #1097cf;
 }
 
 #amount_product_detail_product{

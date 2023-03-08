@@ -55,7 +55,6 @@ const routes = [
                 alert("Bạn phải đăng nhập để tiến hành đặt hàng");
                 return false;   
             }
-            console.log(Cart);
             if(Cart == null || Cart.length == 0){
                 alert("Bạn chưa có sản phẩm trong giỏ hàng");
                 return false;

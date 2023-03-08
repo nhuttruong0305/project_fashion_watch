@@ -29,7 +29,11 @@ export default{
         },
 
         getNumberOfProductInCart(){
-            return JSON.parse(localStorage.getItem("Cart")).length;
+            if(JSON.parse(localStorage.getItem("Cart")) != null){
+                return JSON.parse(localStorage.getItem("Cart")).length;
+            }else{
+                return 0;
+            }    
         }
 
     }

@@ -77,13 +77,15 @@ export default {
                     <td><img class="img_product_in_cart_body" :src="product.imageURL" alt=""></td>
                     <td class="info_product_in_cart_body">{{ product.productname }}</td>
                     <td class="info_product_in_cart_body">{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price) }}</td>
-                    <td style="position: relative; text-align: center; top: 50px;">
+                    <!-- <td style="position: relative; text-align: center; top: 50px;">
                         {{ product.quantity }} 
                         <div class="d-flex flex-column" style="width: 30px; position: absolute; top: -6px; right: 20px;">
                             <button @click="adjustProductQuantity('increase', product._id)" style="border: 1px solid black;">+</button>
                             <button @click="adjustProductQuantity('decrease', product._id)" style="border: 1px solid black;">-</button>
                         </div> 
-                    </td>
+                    </td> -->
+
+                    <td class="info_product_in_cart_body"> {{ product.quantity }}  </td>
                     <td class="info_product_in_cart_body">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price*product.quantity)}}</td>
                     <td class="info_product_in_cart_body"><i style="cursor: pointer;"
                             @click="removeProductInCart(product._id)" class="fa-solid fa-trash"></i></td>

@@ -33,7 +33,14 @@ const productSchema = new mongoose.Schema(
         origin: {
             type: String,
             require: true,
-        }
+        },
+        amountinstock: {
+            type: Number,
+            require: true,
+        },
+    },
+    {
+        timestamps: true
     }
 );
 
