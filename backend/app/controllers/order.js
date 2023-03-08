@@ -1,5 +1,6 @@
 const OrderModel = require("../models/order");
 const ApiError = require("../api-error");
+const ProductModel = require("../models/product");
 
 //Tạo đơn hàng 
 exports.createOrder = async (req, res, next) => {
@@ -8,11 +9,30 @@ exports.createOrder = async (req, res, next) => {
         const newOrder = await OrderInfo.save();
 
         //Chạy vòng lặp trừ amountinstock trong products ra
+        //Đầu tiên lấy thông tin các sản phẩm sẽ được thêm vào order ra (ở đây chính là cart)
         const list_products_in_cart = req.body.products;
-        for(let i = 0; i < list_products_in_cart.length; i++){
-            
-        }
 
+        for(let i = 0; i < list_products_in_cart.length; i++){
+
+            //Lấy thông tin sản phẩm hiện tại ra (tất cả thông tin luôn)
+            const infoProduct = await ProductModel.findById(list_products_in_cart[i]._id);
+            
+            const options = { returnDocument: "after"};
+            //Dữ liệu sẽ được cập nhật
+            const updateData = {
+                productname: infoProduct.productname,
+                price: infoProduct.price,
+                type: infoProduct.type,
+                description: infoProduct.description,
+                color: infoProduct.color,
+                brand: infoProduct.brand,
+                imageURL: infoProduct.imageURL,
+                origin: infoProduct.origin,
+                amountinstock: infoProduct.amountinstock-list_products_in_cart[i].quantity,
+            }
+
+            const productUpdate = await ProductModel.findByIdAndUpdate(list_products_in_cart[i]._id, updateData, options);
+        }
         return res.send(newOrder);
     }catch(error){
         return next(new ApiError(500, "Có lỗi xảy ra khi tạo đơn hàng"));
@@ -49,10 +69,10 @@ exports.getOrderByEmail = async (req, res, next) => {
     }
 }
 
-//Update đơn hàng theo id (đã chạy đúng)
+//Update đơn hàng theo id
 exports.updateOrder = async (req, res, next) => {
     try{
-        options = { returnDocument: "after"};
+        const options = { returnDocument: "after"};
         const order_update = await OrderModel.findByIdAndUpdate(req.params.id, req.body, options);
         return res.send(order_update);
     }catch(error){
