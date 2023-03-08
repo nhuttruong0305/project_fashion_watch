@@ -97,7 +97,7 @@ export default {
         </div>
 
         <div class="mt-3 d-flex justify-content-end">
-            <button class="btn" id="order_button">ĐẶT HÀNG NGAY</button>
+            <button class="btn" id="order_button"><router-link id="nav_to_order_page" to="/order">ĐẶT HÀNG NGAY</router-link></button>
         </div>
     </div>
 </template>
@@ -147,5 +147,14 @@ export default {
     background-color: #1097cf;
     border-radius: 0px;
     width: 300px;
+}
+
+#order_button:hover{
+    background-color: rgb(139, 139, 56);
+}
+
+#nav_to_order_page{
+    text-decoration: none;
+    color: black;
 }
 </style>

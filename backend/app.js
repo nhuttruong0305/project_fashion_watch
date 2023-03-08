@@ -5,6 +5,7 @@ const ApiError = require("./app/api-error");
 const mongoose = require('mongoose');
 const config = require("./app/config");
 const Auth = require("./app/routes/auth");
+const Order = require("./app/routes/order");
 
 const app = express();
 
@@ -26,9 +27,11 @@ app.get("/", (req, res) => {
 //route đăng ký đăng nhập
 app.use("/api/auth", Auth);
 
-
 //route cho api sản phẩm
 app.use("/api/products", productRouter);
+
+//route cho api order
+app.use("/api/orders", Order);
 
 // handle 404 response
 app.use((req, res, next) => {
