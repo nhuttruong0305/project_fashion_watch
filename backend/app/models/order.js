@@ -23,6 +23,9 @@ const orderSchema = new mongoose.Schema(
             type: Array,
             require: true,
         },
+        note: {
+            type: String,
+        },
         total: {
             type: Number,
             require: true,
