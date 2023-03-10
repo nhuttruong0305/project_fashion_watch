@@ -1,18 +1,31 @@
 <script>
-
+import OrderService from '../services/order.service';
 export default{
-    // data(){
-    //     return{
-    //         fullname: '',
-    //         email: '',
-    //         phonenumber: '',
-    //         password: ''
-    //     } 
-    // },
+    data(){
+        return{
+            fullname: '',
+            email: '',
+            phonenumber: '',
+            orderList:[],
+        } 
+    },
 
-    // methods:{
+    mounted(){
+        this.getUserProfileAndOrderList()
+    },
 
-    // }
+    methods:{
+        async getUserProfileAndOrderList(){
+            const UserProfile = JSON.parse(localStorage.getItem('UserLogin'));
+            this.fullname = UserProfile.fullname;
+            this.email = UserProfile.email;
+            this.phonenumber = UserProfile.phonenumber;
+
+            //Lấy thông tin các đơn hàng của email này
+            const response = await OrderService.getOrderListByEmail(this.email);
+            this.orderList = response;
+        }
+    }
 }
 </script>
 
@@ -45,20 +58,51 @@ export default{
                 <h3 style="color: #1097cf">THÔNG TIN</h3>
                 <div class="row mt-3">
                     <div class="col-md-3">Họ và tên:</div>
-                    <div class="col-md-9">Lê Nhựt Trường</div>
+                    <div class="col-md-9">{{ fullname }}</div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-3">Email:</div>
-                    <div class="col-md-9">truong@gmail.com</div>
+                    <div class="col-md-9">{{ email }}</div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-3">Số điện thoại</div>
-                    <div class="col-md-9">0966899548</div>
+                    <div class="col-md-9">{{ phonenumber }}</div>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <div class="container mt-4">
+        <h3 class="text-center">CÁC ĐƠN HÀNG ĐÃ ĐẶT</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Mã đơn</th>
+                    <th scope="col">Tên người nhận</th>
+                    <th scope="col">Địa chỉ nhận</th>
+                    <th scope="col">Số điện thoại</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Tổng</th>
+                    <th scope="col">Hình thức thanh toán</th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="order in orderList">
+                    <td>{{ order._id }}</td>
+                    <td>{{ order.fullname }}</td>
+                    <td>{{ order.address }}</td>
+                    <td>{{ order.phonenumber }}</td>
+                    <td>{{ order.email }}</td>
+                    <td>{{ order.total }}</td>
+                    <td>{{ order.payment }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>@mdo</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <style scoped>
