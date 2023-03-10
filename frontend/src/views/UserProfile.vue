@@ -94,7 +94,7 @@ export default{
                     <td>{{ order.address }}</td>
                     <td>{{ order.phonenumber }}</td>
                     <td>{{ order.email }}</td>
-                    <td>{{ order.total }}</td>
+                    <td>{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.total) }}</td>
                     <td>{{ order.payment }}</td>
                     <td>{{ order.status }}</td>
                 </tr>

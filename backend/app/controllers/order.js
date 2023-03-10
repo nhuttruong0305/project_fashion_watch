@@ -79,3 +79,27 @@ exports.updateOrder = async (req, res, next) => {
         return next(new ApiError(500, "Có lỗi xảy ra khi cập nhật thông tin đơn hàng"));
     }
 }
+
+//Hủy đơn hàng
+exports.cancelOrder = async (req, res, next) => {
+    try{
+        const options = { returnDocument: "after"};
+        const cancel_order = await OrderModel.findByIdAndUpdate(req.params.id, req.body, options);
+
+        //Chạy vòng lặp để cộng các sản phẩm lên lại
+        const list_of_product_in_order = req.body.products;
+        for(let i = 0; i < list_of_product_in_order.length; i++){
+            //Lấy sản phẩm ra để cộng amountinstock lên lại
+            const infoProduct = await ProductModel.findById(list_of_product_in_order[i]._id);
+            const updateData = {
+                amountinstock: infoProduct.amountinstock+list_of_product_in_order[i].quantity,
+            }
+
+            const productUpdate = await ProductModel.findByIdAndUpdate(list_of_product_in_order[i]._id, updateData, options);
+        }
+
+        return res.send(cancel_order);
+    }catch(error){
+        return next(new ApiError(500, "Có lỗi xảy ra khi hủy đơn hàng"));
+    }
+}

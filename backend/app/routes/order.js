@@ -23,4 +23,8 @@ router.route("/email/:email")
 router.route("/update/:id")
     .put(Order.updateOrder);
 
+//Hủy đơn hàng
+router.route("/cancel/:id")
+    .put(Order.cancelOrder);
+
 module.exports = router;    

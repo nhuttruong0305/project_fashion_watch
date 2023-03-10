@@ -4,6 +4,7 @@ export default{
     data(){
         return{
             detailOrder: {},
+            disableButton: false
         } 
     },
 
@@ -13,12 +14,51 @@ export default{
 
     methods:{
         async getDetailOrder(){
-            const response = await OrderService.getOrderById(this.$route.params.id);
-            this.detailOrder = response;
-            // console.log(this.detailOrder.products);
+            try{
+                const response = await OrderService.getOrderById(this.$route.params.id);
+                this.detailOrder = response;
+
+                if(this.detailOrder.status == "Đã hủy"){
+                    this.disableButton = true;
+                }
+            }catch(error){
+                alert("Có lỗi xảy ra");
+            }
+            // console.log(this.detailOrder._id);
+            // console.log(this.detailOrder.fullname);
+            // console.log(this.detailOrder.email);
+            // console.log(this.detailOrder.phonenumber);
+            // console.log(this.detailOrder.address);
+            // console.log(this.detailOrder.products[0]);
+            // console.log(this.detailOrder.products[1]);
+            // console.log(this.detailOrder.note);
+            // console.log(this.detailOrder.total);
+            // console.log(this.detailOrder.payment);
+            // console.log(this.detailOrder.status);
+        },
+
+        async cancelOrder(){
+            try{
+                const response = await OrderService.cancelOrderById({
+                    fullname: this.detailOrder.fullname,
+                    email: this.detailOrder.email,
+                    phonenumber: this.detailOrder.phonenumber,
+                    address: this.detailOrder.address,
+                    products: this.detailOrder.products,
+                    note: this.detailOrder.note,
+                    total: this.detailOrder.total,
+                    payment: this.detailOrder.payment,
+                    status: "Đã hủy",
+                }, this.detailOrder._id);
+
+                //Chạy vòng lặp cộng các sản phẩm lên
+                alert("Đã hủy đơn hàng");
+                this.$router.push({ name: 'UserProfile' });
+            }catch(error){
+                alert("Có lỗi xảy ra khi hủy đơn hàng");
+            }
         }
     }
-
 }
 </script>
 
@@ -57,6 +97,33 @@ export default{
                     <td>{{ product.quantity }}</td>
                     <td> {{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price*product.quantity)}}</td>
                 </tr>
+                
+                <button @click="cancelOrder()" id="btn_cancel_order">Hủy đơn hàng</button>
+
+                <!-- Button -->
+                <!-- <button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop" :disabled="disableButton">
+                    Hủy đơn hàng
+                </button> -->
+
+                <!-- Modal -->
+                <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Hủy đơn hàng</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc muốn hủy đơn hàng này chứ
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không hủy</button>
+                            <button @click="cancelOrder()" type="button" class="btn btn-primary">Hủy</button>
+                        </div>
+                        </div>
+                    </div>
+                </div> -->
+
             </tbody>
         </table>
     </div>
@@ -100,5 +167,12 @@ export default{
     font-size: 20px;
 }
 
+#btn_cancel_order{
+    margin-top: 10px;
+    background-color: #ffc107;
+    padding: 10px;
+    border: 0px;
+    border-radius: 3px;
+}
 
 </style>

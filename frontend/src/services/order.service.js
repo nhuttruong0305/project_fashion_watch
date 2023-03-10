@@ -19,6 +19,11 @@ class OrderService{
     async getOrderById(id){
         return (await this.api.get(`/detail/${id}`)).data;
     }
+
+    //Hủy đơn hàng
+    async cancelOrderById(data, id){
+        return (await this.api.put(`/cancel/${id}`,data)).data;
+    }
 }
 
 export default new OrderService();
