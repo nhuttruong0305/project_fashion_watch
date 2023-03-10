@@ -14,6 +14,11 @@ class OrderService{
     async getOrderListByEmail(email){
         return (await this.api.get(`/email/${email}`)).data;
     }
+
+    //Lấy thông tin đơn hàng theo id
+    async getOrderById(id){
+        return (await this.api.get(`/detail/${id}`)).data;
+    }
 }
 
 export default new OrderService();

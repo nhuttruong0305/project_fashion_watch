@@ -11,6 +11,7 @@ import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 import OrderSuccess from "@/views/OrderSuccess.vue";
 import UserProfile from "@/views/UserProfile.vue";
+import DetailOrder from "@/views/DetailOrder.vue";
 
 const routes = [
     {
@@ -117,6 +118,15 @@ const routes = [
             header: Header,
             footer: Footer,
         }
+    },
+    {//Cần bảo vệ route
+        path: "/detailorder/:id",
+        name: "DetailOrder",
+        components:{
+            default: DetailOrder,
+            header: Header,
+            footer: Footer,
+        }
     }
 ];
 
@@ -150,6 +160,11 @@ router.beforeEach((to, from) => {
     
     //Phải đăng nhập mới cho vào trang UserProfile
     if(to.name == 'UserProfile' && UserLogin == null){
+        return '/';
+    }
+
+    //Phải đăng nhập rồi mới vào trang DetailOrder được
+    if(to.name == 'DetailOrder' && UserLogin == null){
         return '/';
     }
 })

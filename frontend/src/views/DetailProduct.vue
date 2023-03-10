@@ -9,7 +9,7 @@ import ProductService from '../services/product.service';
             }
         },
 
-        mounted() {
+        created() { //đổi từ mounted
             this.getDetailProduct();
         },
 

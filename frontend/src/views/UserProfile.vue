@@ -10,7 +10,7 @@ export default{
         } 
     },
 
-    mounted(){
+    created(){ //đổi từ mounted
         this.getUserProfileAndOrderList()
     },
 
@@ -85,12 +85,11 @@ export default{
                     <th scope="col">Tổng</th>
                     <th scope="col">Hình thức thanh toán</th>
                     <th scope="col">Trạng thái</th>
-                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="order in orderList">
-                    <td>{{ order._id }}</td>
+                    <td><router-link :to="{name: 'DetailOrder', params: {id: `${order._id}`}}"> {{ order._id }}</router-link> </td>
                     <td>{{ order.fullname }}</td>
                     <td>{{ order.address }}</td>
                     <td>{{ order.phonenumber }}</td>
@@ -98,7 +97,6 @@ export default{
                     <td>{{ order.total }}</td>
                     <td>{{ order.payment }}</td>
                     <td>{{ order.status }}</td>
-                    <td>@mdo</td>
                 </tr>
             </tbody>
         </table>
