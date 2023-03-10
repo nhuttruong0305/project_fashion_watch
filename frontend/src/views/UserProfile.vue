@@ -10,7 +10,7 @@ export default{
         } 
     },
 
-    created(){ //đổi từ mounted
+    created(){ 
         this.getUserProfileAndOrderList()
     },
 
@@ -22,8 +22,12 @@ export default{
             this.phonenumber = UserProfile.phonenumber;
 
             //Lấy thông tin các đơn hàng của email này
-            const response = await OrderService.getOrderListByEmail(this.email);
-            this.orderList = response;
+            try{
+                const response = await OrderService.getOrderListByEmail(this.email);
+                this.orderList = response;
+            }catch(error){
+                alert("Có lỗi xảy ra khi lấy danh sách đơn hàng");
+            }
         }
     }
 }

@@ -18,7 +18,14 @@ export default{
                 });
 
                 //Lưu thông tin đăng nhập lên localStorage
-                localStorage.setItem('UserLogin', JSON.stringify(user));
+                const UserLogin = {
+                    _id: user._id,
+                    fullname: user.fullname,
+                    email: user.email,
+                    isAdmin: user.isAdmin,
+                    phonenumber: user.phonenumber
+                }
+                localStorage.setItem('UserLogin', JSON.stringify(UserLogin));
 
                 //Thông báo cho người dùng đã đăng nhập thành công
                 alert("Đăng nhập thành công, hãy mua hàng đi nào !!!");

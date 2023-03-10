@@ -19,7 +19,7 @@ export default{
                     phonenumber: this.phonenumber,
                     password: this.password,
                 });
-                console.log(user);
+                // console.log(user);
                 alert("Đăng ký tài khoản thành công");
                 this.$router.push({ name: 'Login' });
             }catch(error){
