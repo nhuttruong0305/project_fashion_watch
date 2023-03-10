@@ -9,7 +9,8 @@ import Cart from "@/views/Cart.vue";
 import Order from "@/views/Order.vue";
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
-import OrderSuccess from "@/views/OrderSuccess.vue"
+import OrderSuccess from "@/views/OrderSuccess.vue";
+import UserProfile from "@/views/UserProfile.vue";
 
 const routes = [
     {
@@ -84,20 +85,20 @@ const routes = [
             footer: Footer,
             header: Header,
         }, 
-        beforeEnter: (to, from, next) => {
-            const UserInfo = JSON.parse(localStorage.getItem("UserLogin"));
-            const Cart = JSON.parse(localStorage.getItem("Cart"));
-            if(UserInfo == null){
-                alert("Bạn phải đăng nhập để tiến hành đặt hàng");
-                return false;   
-            }
-            if(Cart == null || Cart.length == 0){
-                alert("Bạn chưa có sản phẩm trong giỏ hàng");
-                return false;
-            }else{
-                next();
-            }
-        }
+        // beforeEnter: (to, from, next) => {
+        //     const UserInfo = JSON.parse(localStorage.getItem("UserLogin"));
+        //     const Cart = JSON.parse(localStorage.getItem("Cart"));
+        //     if(UserInfo == null){
+        //         alert("Bạn phải đăng nhập để tiến hành đặt hàng");
+        //         return false;   
+        //     }
+        //     if(Cart == null || Cart.length == 0){
+        //         alert("Bạn chưa có sản phẩm trong giỏ hàng");
+        //         return false;
+        //     }else{
+        //         next();
+        //     }
+        // }
     },
     {//Cần bảo vệ route
         path: "/ordersuccess",
@@ -107,6 +108,15 @@ const routes = [
             header: Header,
             footer: Footer,
         } 
+    },
+    {//Cần bảo vệ route
+        path: "/userprofile",
+        name: "UserProfile",
+        components:{
+            default: UserProfile,
+            header: Header,
+            footer: Footer,
+        }
     }
 ];
 
@@ -115,15 +125,33 @@ const router = createRouter({
     routes,
 });
 
-router.beforeEach((to) => {
+router.beforeEach((to, from) => {
     const UserLogin = JSON.parse(localStorage.getItem("UserLogin"));
-    if(to.name == 'Order' && UserLogin == null){
-        return '/';
+    const Cart = JSON.parse(localStorage.getItem("Cart"));
+    
+    //Người dùng phải đăng nhập và giỏ hàng không được rỗng để vào trang Order
+    if(to.name == 'Order'){
+        //Bạn phải đăng nhập mới vào trnag Order được
+        if(UserLogin == null){
+            alert("Bạn phải đăng nhập để tiến hành đặt hàng");
+            return '/login';   
+        }
+        //Giỏ hàng không được rỗng mới vào trang Order được
+        if(Cart == null || Cart.length == 0){
+            alert("Bạn chưa có sản phẩm trong giỏ hàng");
+            return '/product/all';
+        }
     }
 
-    if(to.name == 'OrderSuccess' && UserLogin == null){
+    //Phải từ trang Order chuyển hướng qua trang OrderSuccess
+    if(to.name == 'OrderSuccess' && from.name != 'Order'){
         return '/';
-    } 
+    }
+    
+    //Phải đăng nhập mới cho vào trang UserProfile
+    if(to.name == 'UserProfile' && UserLogin == null){
+        return '/';
+    }
 })
 
 export default router;

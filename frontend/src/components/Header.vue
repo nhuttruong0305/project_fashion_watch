@@ -11,6 +11,10 @@ export default{
         '$route': 'checkUserLogin',
     },
 
+    created(){
+        this.checkUserLogin()
+    },
+
     methods: {
         checkUserLogin(){
             if(localStorage.getItem("UserLogin")){
@@ -67,7 +71,7 @@ export default{
                     </ul>
                     <!-- Nếu đã đăng nhập thì hiện 2 dòng dưới -->
                     <ul v-else id="login_register_header">
-                        <li><a id="login_header">{{ fullname }}</a></li>
+                        <li><router-link to="/userprofile" id="login_header">{{ fullname }}</router-link></li>
                         <li><a id="register_header" @click="logOut()">Đăng xuất</a></li>
                     </ul>
 
