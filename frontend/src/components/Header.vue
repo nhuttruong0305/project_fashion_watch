@@ -47,7 +47,7 @@ export default{
     <div id="container_header" class="container">
         <div class="row">
             <div class="col-sm-3">
-                <img id="logo_header" src="../assets/img/chaistain_logo.png" alt="Logo">
+                <router-link to="/"><img id="logo_header" src="../assets/img/chaistain_logo.png" alt="Logo"></router-link>
             </div>
             <div class="col-sm-9">
                 <div class="d-flex align-items-center justify-content-end" style="height: 100%;">

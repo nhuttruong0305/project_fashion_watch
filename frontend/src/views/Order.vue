@@ -55,11 +55,19 @@ export default{
                     payment: this.payment,
                     status: this.status,
                 });
-                localStorage.removeItem("Cart");
-                alert("Đặt hàng thành công, cảm ơn bạn đã tin dùng sản phẩm của chúng tôi!");
-                
+
+                //Lưu thông tin người nhận lên localStorage
+                const InfoCustomer = {
+                    fullname: this.fullname,
+                    phonenumber: this.phonenumber,
+                    address: this.address,
+                    total: this.total,
+                    payment: this.payment,
+                    note: this.note,
+                }
+                localStorage.setItem("InfoCustomer", JSON.stringify(InfoCustomer));
                 //Sửa lại code dưới này điều hướng qua trang đặt hàng thành công
-                this.$router.push({ name: 'Home' });
+                this.$router.push({ name: 'OrderSuccess' });
             }catch(error){
                 alert("Đặt hàng thất bại, đã có lỗi xảy ra vui lòng thử lại");
             }

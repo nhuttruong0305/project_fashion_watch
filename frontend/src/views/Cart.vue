@@ -3,7 +3,8 @@ export default {
     data() {
         return {
             list_of_products_in_cart: [],
-            total_cart: 0
+            total_cart: 0,
+            status_empty_of_cart: false,
         }
     },
 
@@ -15,8 +16,13 @@ export default {
         getProductInCart() {
             this.list_of_products_in_cart = JSON.parse(localStorage.getItem("Cart"));
             this.total_cart = 0;
-            for(let i = 0; i < this.list_of_products_in_cart.length; i++){
-                this.total_cart += (this.list_of_products_in_cart[i].quantity*this.list_of_products_in_cart[i].price);
+            if(this.list_of_products_in_cart == null || this.list_of_products_in_cart.length==0){
+                this.status_empty_of_cart = true;
+            }else{
+                this.status_empty_of_cart = false;
+                for(let i = 0; i < this.list_of_products_in_cart.length; i++){
+                    this.total_cart += (this.list_of_products_in_cart[i].quantity*this.list_of_products_in_cart[i].price);
+                }
             }
         },
 
@@ -61,9 +67,13 @@ export default {
 
 <template>
     <!-- template ở đây đã check -->
-    <div id="nav_to_home"> <router-link to="/" style="text-decoration: none; color:black;">Trang
-            chủ</router-link>&nbsp;&nbsp;/&nbsp;&nbsp;<span>Giỏ hàng</span></div>
-    <div id="container_cart" class="container">
+    <div id="nav_to_home"> 
+        <router-link to="/" style="text-decoration: none; color:black;">Trang chủ</router-link>&nbsp;&nbsp;/&nbsp;&nbsp;<span>Giỏ hàng</span>
+    </div>
+    <div id="cart_empty_status" v-if="status_empty_of_cart">
+        Giỏ hàng hiện đang trống, hãy thêm sản phẩm vào <i class="fa-solid fa-cart-shopping"></i>
+    </div>
+    <div v-if="!status_empty_of_cart" id="container_cart" class="container">
         <table class="table table-bordered">
             <thead id="cart_head">
                 <tr>
@@ -162,5 +172,12 @@ export default {
 #nav_to_order_page{
     text-decoration: none;
     color: black;
+}
+
+#cart_empty_status{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(95, 95, 95);
 }
 </style>

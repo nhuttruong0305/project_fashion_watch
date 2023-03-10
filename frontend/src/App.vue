@@ -12,11 +12,13 @@ export default {
 </script>
 
 <template> 
-  <Header></Header>
+  <!-- <Header></Header> -->
+  <router-view name="header"></router-view>
   <main>
     <router-view></router-view>
   </main>
-  <Footer></Footer>
+  <!-- <Footer></Footer> -->
+  <router-view name="footer"></router-view>
 </template>
 
 <style scoped>
