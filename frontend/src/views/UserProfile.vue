@@ -52,7 +52,7 @@ export default{
                     <a>Thông tin tài khoản</a>
                 </div>
                 <div class="mt-3">
-                    <a href="" style="text-decoration: none; color: #1097cf;">Đổi thông tin người dùng</a>
+                    <router-link to="/changeuserprofile" style="text-decoration: none; color: #1097cf;">Đổi thông tin người dùng</router-link>
                 </div>
                 <div class="mt-3">
                     <a href="" style="text-decoration: none; color: #1097cf;">Đổi mật khẩu</a>

@@ -57,3 +57,19 @@ exports.login = async (req, res, next) => {
         return next(new ApiError(500,"Có lỗi xảy ra khi đăng nhập"));
     }
 };
+
+//Cập nhật thông tin tài khoản
+exports.updateUserProfile = async (req, res, next) => {
+    try{
+        const options = {returnDocument: "after"};
+        const updateDoc = {
+            fullname: req.body.fullname,
+            phonenumber: req.body.phonenumber,
+        }
+
+        const userProfileUpdate = await UserModel.findByIdAndUpdate(req.params.id, updateDoc, options);
+        return res.send(userProfileUpdate);
+    }catch(error){
+        return next(new ApiError(500,"Có lỗi xảy ra khi cập nhật thông tin tài khoản"));
+    }
+}

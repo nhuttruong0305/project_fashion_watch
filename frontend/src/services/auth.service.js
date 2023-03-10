@@ -14,6 +14,11 @@ class AuthService{
     async loginAccountUser(data){
         return (await this.api.post('/login',data)).data;
     }
+
+    //Cập nhật thông tin người dùng
+    async updateUserProfile(data, id){
+        return (await this.api.put(`/updateprofile/${id}`,data)).data;
+    }
 }
 
 export default new AuthService();

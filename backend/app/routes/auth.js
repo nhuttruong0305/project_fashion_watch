@@ -12,4 +12,8 @@ router.route("/register")
 router.route("/login")
     .post(Auth.login);
 
+//Cập nhật thông tin tài khoản
+router.route("/updateprofile/:id")
+    .put(Auth.updateUserProfile);
+
 module.exports = router;

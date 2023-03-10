@@ -12,6 +12,7 @@ import Footer from "../components/Footer.vue";
 import OrderSuccess from "@/views/OrderSuccess.vue";
 import UserProfile from "@/views/UserProfile.vue";
 import DetailOrder from "@/views/DetailOrder.vue";
+import ChangeUserProfile from "@/views/ChangeUserProfile.vue";
 
 const routes = [
     {
@@ -127,6 +128,15 @@ const routes = [
             header: Header,
             footer: Footer,
         }
+    },
+    {
+        path: "/changeuserprofile",
+        name: "ChangeUserProfile",
+        components:{
+            default: ChangeUserProfile,
+            header: Header,
+            footer: Footer,
+        }
     }
 ];
 
@@ -165,6 +175,11 @@ router.beforeEach((to, from) => {
 
     //Phải đăng nhập rồi mới vào trang DetailOrder được
     if(to.name == 'DetailOrder' && UserLogin == null){
+        return '/';
+    }
+
+    //Phải đăng nhập rồi mới cho vào trang ChangeUserProfile
+    if(to.name == "ChangeUserProfile" && UserLogin == null){
         return '/';
     }
 })
