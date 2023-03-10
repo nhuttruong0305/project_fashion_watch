@@ -76,7 +76,7 @@ const routes = [
             header: Header,
         }
     },
-    {
+    { //Cần bảo vệ route
         path: "/order",
         name: "Order",
         components:{
@@ -98,7 +98,8 @@ const routes = [
                 next();
             }
         }
-    },{
+    },
+    {//Cần bảo vệ route
         path: "/ordersuccess",
         name: "OrderSuccess",
         components:{
@@ -113,5 +114,16 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
 });
+
+router.beforeEach((to) => {
+    const UserLogin = JSON.parse(localStorage.getItem("UserLogin"));
+    if(to.name == 'Order' && UserLogin == null){
+        return '/';
+    }
+
+    if(to.name == 'OrderSuccess' && UserLogin == null){
+        return '/';
+    } 
+})
 
 export default router;
