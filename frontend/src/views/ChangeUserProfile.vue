@@ -22,20 +22,31 @@ export default{
         },
 
         async changeUserProfile(){
-            try{
-                const response = await AuthService.updateUserProfile({
-                    fullname: this.fullname,
-                    phonenumber: this.phonenumber,
-                },this._id);
 
-                //Cập nhật lại thông tin lên localStorage
-                localStorage.setItem('UserLogin', JSON.stringify(response));
-                alert('Cập nhật thông tin người dùng thành công');
-                this.getUserInfo();
-                location.reload();
-            }catch(error){
-                alert("Có lỗi xảy ra khi cập nhật thông tin người dùng, vui long thử lại");
+            const confirm = window.confirm('Bạn có chắc muốn thay đổi thông tin tài khoản chứ?');
+            if(confirm){
+                try{
+                    const response = await AuthService.updateUserProfile({
+                        fullname: this.fullname,
+                        phonenumber: this.phonenumber,
+                    },this._id);
+
+                    //Cập nhật lại thông tin lên localStorage
+                    const userLogin = {
+                        _id: response._id,
+                        fullname: response.fullname,
+                        email: response.email,
+                        isAdmin: response.isAdmin,
+                        phonenumber: response.phonenumber
+                    }
+                    localStorage.setItem('UserLogin', JSON.stringify(userLogin));
+                    alert('Cập nhật thông tin người dùng thành công');
+                    this.getUserInfo();
+                }catch(error){
+                    alert("Có lỗi xảy ra khi cập nhật thông tin người dùng, vui long thử lại");
+                }
             }
+            
         }
     },
 }
