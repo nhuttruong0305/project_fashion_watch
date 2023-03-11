@@ -24,38 +24,32 @@ export default{
             }catch(error){
                 alert("Có lỗi xảy ra");
             }
-            // console.log(this.detailOrder._id);
-            // console.log(this.detailOrder.fullname);
-            // console.log(this.detailOrder.email);
-            // console.log(this.detailOrder.phonenumber);
-            // console.log(this.detailOrder.address);
-            // console.log(this.detailOrder.products[0]);
-            // console.log(this.detailOrder.products[1]);
-            // console.log(this.detailOrder.note);
-            // console.log(this.detailOrder.total);
-            // console.log(this.detailOrder.payment);
-            // console.log(this.detailOrder.status);
         },
 
         async cancelOrder(){
-            try{
-                const response = await OrderService.cancelOrderById({
-                    fullname: this.detailOrder.fullname,
-                    email: this.detailOrder.email,
-                    phonenumber: this.detailOrder.phonenumber,
-                    address: this.detailOrder.address,
-                    products: this.detailOrder.products,
-                    note: this.detailOrder.note,
-                    total: this.detailOrder.total,
-                    payment: this.detailOrder.payment,
-                    status: "Đã hủy",
-                }, this.detailOrder._id);
 
-                //Chạy vòng lặp cộng các sản phẩm lên
-                alert("Đã hủy đơn hàng");
-                this.$router.push({ name: 'UserProfile' });
-            }catch(error){
-                alert("Có lỗi xảy ra khi hủy đơn hàng");
+            //Hỏi người dùng xem có xác nhận hủy đơn không
+            const confirm = window.confirm('Bạn có chắc muốn hủy đơn hàng chứ?');
+
+            if(confirm){
+                try{
+                    const response = await OrderService.cancelOrderById({
+                        fullname: this.detailOrder.fullname,
+                        email: this.detailOrder.email,
+                        phonenumber: this.detailOrder.phonenumber,
+                        address: this.detailOrder.address,
+                        products: this.detailOrder.products,
+                        note: this.detailOrder.note,
+                        total: this.detailOrder.total,
+                        payment: this.detailOrder.payment,
+                        status: "Đã hủy",
+                    }, this.detailOrder._id);
+                    alert("Đã hủy đơn hàng");
+                    // this.$router.push({ name: 'UserProfile' });
+                    this.getDetailOrder();
+                }catch(error){
+                    alert("Có lỗi xảy ra khi hủy đơn hàng");
+                }
             }
         }
     }
@@ -98,7 +92,7 @@ export default{
                     <td> {{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price*product.quantity)}}</td>
                 </tr>
                 
-                <button @click="cancelOrder()" id="btn_cancel_order">Hủy đơn hàng</button>
+                <button @click="cancelOrder()" id="btn_cancel_order" :disabled="disableButton">Hủy đơn hàng</button>
 
                 <!-- Button -->
                 <!-- <button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop" :disabled="disableButton">
