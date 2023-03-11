@@ -56,21 +56,21 @@ export default{
 
                 <div class="my-3">
                     <label for="fullname_register" class="form-label">Họ tên</label>
-                    <input type="text" name="fullname_register" class="form-control" id="fullname_register" v-model="fullname">
+                    <input type="text" name="fullname_register" class="form-control" id="fullname_register" v-model="fullname" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="email_register" class="form-label">Email</label>
-                    <input type="email" name="email_register" class="form-control" id="email_register" aria-describedby="emailHelp" v-model="email">
+                    <input type="email" name="email_register" class="form-control" id="email_register" aria-describedby="emailHelp" v-model="email" required>
                 <div id="emailHelp" class="form-text">Chúng tôi sẽ không bao giờ chia sẻ email của bạn với bất kỳ ai khác.</div>
                 </div>
                 <div class="mb-3">
                     <label for="phone_number_register" class="form-label">Số điện thoại</label>
-                    <input type="text" name="phone_number_register" class="form-control" id="phone_number_register" v-model="phonenumber">
+                    <input type="text" name="phone_number_register" class="form-control" id="phone_number_register" v-model="phonenumber" required>
                 </div>
                 <div class="mb-3">
                     <label for="password_register" class="form-label">Mật khẩu</label>
-                    <input type="password" name="password_register" class="form-control" id="password_register" v-model="password">
+                    <input type="password" name="password_register" class="form-control" id="password_register" v-model="password" required>
                 </div>
                 <!-- <div class="mb-3">
                     <label for="password_repeat_register" class="form-label">Nhập lại mật khẩu</label>

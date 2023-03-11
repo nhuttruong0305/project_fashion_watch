@@ -2,7 +2,7 @@ const OrderModel = require("../models/order");
 const ApiError = require("../api-error");
 const ProductModel = require("../models/product");
 
-//Tạo đơn hàng 
+//Tạo đơn hàng (đã chạy đúng)
 exports.createOrder = async (req, res, next) => {
     const OrderInfo = new OrderModel(req.body);
     try{
@@ -80,7 +80,7 @@ exports.updateOrder = async (req, res, next) => {
     }
 }
 
-//Hủy đơn hàng
+//Hủy đơn hàng (đã chạy đúng)
 exports.cancelOrder = async (req, res, next) => {
     try{
         const options = { returnDocument: "after"};

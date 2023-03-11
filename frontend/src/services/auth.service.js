@@ -19,6 +19,11 @@ class AuthService{
     async updateUserProfile(data, id){
         return (await this.api.put(`/updateprofile/${id}`,data)).data;
     }
+
+    //Cập nhật mật khẩu
+    async updatePassword(data, id){
+        return (await this.api.put(`/updatepassword/${id}`,data)).data;
+    }
 }
 
 export default new AuthService();

@@ -74,7 +74,7 @@ export default{
                     <a>Đổi thông tin người dùng</a>
                 </div>
                 <div class="mt-3">
-                    <a href="" style="text-decoration: none; color: #1097cf;">Đổi mật khẩu</a>
+                    <router-link to="/changepassword" style="text-decoration: none; color: #1097cf;">Đổi mật khẩu</router-link>
                 </div>
             </div>
             <div class="col-md-8 offset-md-1" id="form_change_userprofile">

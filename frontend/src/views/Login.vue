@@ -68,13 +68,13 @@ export default{
 
                 <div class="my-3">
                     <label for="exampleInputEmail1" class="form-label">Email</label>
-                    <input type="email" name="email_login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="email">
+                    <input type="email" name="email_login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="email" required>
                 </div>
                 <div id="emailHelp" class="form-text">Chúng tôi sẽ không bao giờ chia sẻ email của bạn với bất kỳ ai khác.</div>
 
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
-                    <input type="password" name="password_login" class="form-control" id="exampleInputPassword1" v-model="password">
+                    <input type="password" name="password_login" class="form-control" id="exampleInputPassword1" v-model="password" required>
                 </div>
 
                 <button type="submit" name="btn_login" class="btn btn-primary d-block w-100">Đăng nhập</button>

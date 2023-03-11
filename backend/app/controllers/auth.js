@@ -58,7 +58,7 @@ exports.login = async (req, res, next) => {
     }
 };
 
-//Cập nhật thông tin tài khoản
+//Cập nhật thông tin tài khoản (đã chạy đúng)
 exports.updateUserProfile = async (req, res, next) => {
     try{
         const options = {returnDocument: "after"};
@@ -71,5 +71,34 @@ exports.updateUserProfile = async (req, res, next) => {
         return res.send(userProfileUpdate);
     }catch(error){
         return next(new ApiError(500,"Có lỗi xảy ra khi cập nhật thông tin tài khoản"));
+    }
+}
+
+//Cập nhật mật khẩu (đã chạy đúng)
+exports.updatePassword = async (req, res, next) => {
+    try{
+        const current_password = req.body.current_password;
+        const user_info = await UserModel.findById(req.params.id);
+        const validPassword = await bcrypt.compare(current_password, user_info.password);
+
+        if(validPassword){
+            const new_password = req.body.new_password;
+            
+            //hash password do người dùng nhập vào
+            const salt = await bcrypt.genSalt(10);
+            const hashed = await bcrypt.hash(new_password, salt);
+            
+            //Tiến hành cập nhật vào CSDL
+            const options = {returnDocument: "after"};
+            const updateDoc = {
+                password: hashed,
+            };
+            const update_password = await UserModel.findByIdAndUpdate(req.params.id, updateDoc, options);
+            return res.send(update_password);
+        }else{
+            return next(new ApiError(400,"Mật khẩu hiện tại bạn nhập không đúng"));    
+        }
+    }catch{
+        return next(new ApiError(500,"Có lỗi xảy ra khi đổi mật khẩu"));
     }
 }

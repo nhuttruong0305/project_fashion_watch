@@ -16,4 +16,7 @@ router.route("/login")
 router.route("/updateprofile/:id")
     .put(Auth.updateUserProfile);
 
+//Cập nhật mật khẩu
+router.route("/updatepassword/:id")
+    .put(Auth.updatePassword);
 module.exports = router;

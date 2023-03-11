@@ -13,6 +13,7 @@ import OrderSuccess from "@/views/OrderSuccess.vue";
 import UserProfile from "@/views/UserProfile.vue";
 import DetailOrder from "@/views/DetailOrder.vue";
 import ChangeUserProfile from "@/views/ChangeUserProfile.vue";
+import ChangePassword from "@/views/ChangePassword.vue";
 
 const routes = [
     {
@@ -129,11 +130,20 @@ const routes = [
             footer: Footer,
         }
     },
-    {
+    {//Cần bảo vệ route
         path: "/changeuserprofile",
         name: "ChangeUserProfile",
         components:{
             default: ChangeUserProfile,
+            header: Header,
+            footer: Footer,
+        }
+    },
+    {//Cần bảo vệ route
+        path: "/changepassword",
+        name: "ChangePassword",
+        components:{
+            default: ChangePassword,
             header: Header,
             footer: Footer,
         }
@@ -180,6 +190,11 @@ router.beforeEach((to, from) => {
 
     //Phải đăng nhập rồi mới cho vào trang ChangeUserProfile
     if(to.name == "ChangeUserProfile" && UserLogin == null){
+        return '/';
+    }
+
+    //Phải đăng nhập rồi mới cho vào trang đổi mật khẩu
+    if(to.name == "ChangePassword" && UserLogin == null){
         return '/';
     }
 })
