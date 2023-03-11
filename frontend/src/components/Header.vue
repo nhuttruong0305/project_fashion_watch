@@ -4,6 +4,7 @@ export default{
         return{
             isLogin: false,
             fullname: '',
+            keyword_to_find_product: ''
         }
     },
 
@@ -38,6 +39,10 @@ export default{
             }else{
                 return 0;
             }    
+        },
+
+        searchProductByKeyword(){
+            this.$router.push({ name: 'SearchProduct', query: { keyword: this.keyword_to_find_product }});
         }
 
     }
@@ -57,8 +62,8 @@ export default{
                 <div class="d-flex align-items-center justify-content-end" style="height: 100%;">
                     <!-- <FormSearchProductHeader></FormSearchProductHeader> -->
                     <div id="form_search_product_header" class="d-flex align-items-center justify-content-around">
-                    <input type="text" placeholder="Tìm sản phẩm" id="input_search_header">
-                    <button id="search_btn_header" class="btn btn-primary">
+                    <input type="text" placeholder="Tìm sản phẩm" id="input_search_header" v-model="keyword_to_find_product" @keyup.enter="searchProductByKeyword()">
+                    <button id="search_btn_header" class="btn btn-primary" @click="searchProductByKeyword()">
                         <i id="search_icon" class="fas fa-search"></i>
                     </button>
                 </div>

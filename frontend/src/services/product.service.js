@@ -14,6 +14,11 @@ class ProductService{
     async getDetailProduct(id){
         return (await this.api.get(`/detail/${id}`)).data;
     }
+
+    //Tìm kiếm sản phẩm theo keyword
+    async getProductByKeyword(keyword){
+        return (await this.api.get(`/searchproduct/bykeyword?keyword=${keyword}`)).data;
+    }
 }
 
 export default new ProductService();

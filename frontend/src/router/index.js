@@ -14,6 +14,7 @@ import UserProfile from "@/views/UserProfile.vue";
 import DetailOrder from "@/views/DetailOrder.vue";
 import ChangeUserProfile from "@/views/ChangeUserProfile.vue";
 import ChangePassword from "@/views/ChangePassword.vue";
+import SearchProduct from "@/views/SearchProduct.vue";
 
 const routes = [
     {
@@ -144,6 +145,15 @@ const routes = [
         name: "ChangePassword",
         components:{
             default: ChangePassword,
+            header: Header,
+            footer: Footer,
+        }
+    },
+    {
+        path: "/searchproduct",
+        name: "SearchProduct",
+        components:{
+            default: SearchProduct,
             header: Header,
             footer: Footer,
         }
