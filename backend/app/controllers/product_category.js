@@ -21,6 +21,13 @@ exports.createProductCategory = async (req, res, next) => {
 //Chỉnh sửa thông tin loại sản phẩm (đã chạy đúng)
 exports.updateProductCategory = async (req, res, next) => {
     try{
+        //Đầu tiên tìm trong tất cả các loại sản phẩm có tên trùng không
+        const product_categories_exists = await ProductCategoryModel.find();
+        for(let i = 0; i < product_categories_exists.length; i++){
+            if(req.body.category_name == product_categories_exists[i].category_name){
+                return next(new ApiError(400, "Tên loại sản phẩm này đã tồn tại, vui lòng chọn tên khác"));
+            }
+        }
         const options = {returnDocument: "after"};
         const updateDoc = {
             category_name: req.body.category_name,

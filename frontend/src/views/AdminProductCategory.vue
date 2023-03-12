@@ -57,7 +57,7 @@ export default {
                     <tr v-for="product_category in product_category_list">
                         <td>{{ product_category.category_name }}</td>
                         <td>{{ product_category.number_type}}</td>
-                        <td><button>Chỉnh sửa</button></td>
+                        <td><button><router-link style="color: black; text-decoration: none;" :to="{name: 'UpdateProductCategory', params: {number_type: `${product_category.number_type}`}}">Chỉnh sửa</router-link></button></td>
                     </tr>
                 </tbody>
             </table>
