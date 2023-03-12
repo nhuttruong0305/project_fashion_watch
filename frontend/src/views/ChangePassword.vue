@@ -37,6 +37,7 @@ export default{
 }    
 </script>
 <template>
+    <title>Đổi mật khẩu</title>
     <div id="breadcrumb_background">
         <p id="title_breadcrumb" class="text-center">ĐỔI MẬT KHẨU</p>
         <nav aria-label="breadcrumb">

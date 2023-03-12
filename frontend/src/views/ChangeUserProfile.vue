@@ -53,6 +53,7 @@ export default{
 </script>
 
 <template>
+    <title>Đổi thông tin người dùng</title>
     <div id="breadcrumb_background">
         <p id="title_breadcrumb" class="text-center">ĐỔI THÔNG TIN NGƯỜI DÙNG</p>
         <nav aria-label="breadcrumb">

@@ -39,6 +39,7 @@ export default{
 </script>
 
 <template>
+    <title>Đặt hàng thành công</title>
     <div class="container" style="margin-top: 20px">
         <div class="row">
             <div class="col-3"></div>

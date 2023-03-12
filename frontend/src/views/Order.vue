@@ -78,6 +78,7 @@ export default{
 
 </script>
 <template>
+    <title>Tiến hành đặt hàng</title>
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-8">

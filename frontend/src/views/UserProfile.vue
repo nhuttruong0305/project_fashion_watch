@@ -34,6 +34,7 @@ export default{
 </script>
 
 <template>
+    <title>Thông tin tài khoản</title>
     <div id="breadcrumb_background">
         <p id="title_breadcrumb" class="text-center">THÔNG TIN TÀI KHOẢN</p>
         <nav aria-label="breadcrumb">

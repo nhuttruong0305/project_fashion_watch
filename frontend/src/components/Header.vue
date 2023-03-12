@@ -14,6 +14,7 @@ export default{
 
     created(){
         this.checkUserLogin()
+        // setInterval(this.getNumberOfProductInCart(),10);
     },
 
     methods: {
@@ -118,11 +119,11 @@ export default{
                         <router-link to="/about" class="nav-link">GIỚI THIỆU</router-link>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="#">TIN TỨC</a>
+                        <router-link to="/news" class="nav-link">TIN TỨC</router-link>
                         <!-- bổ sung sau khi thêm trang tin tức -->
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="#">LIÊN HỆ</a>
+                        <router-link to="/contact" class="nav-link">LIÊN HỆ</router-link>
                         <!-- bổ sung sau khi thêm trang liên hệ -->
                     </li>
                 </ul>

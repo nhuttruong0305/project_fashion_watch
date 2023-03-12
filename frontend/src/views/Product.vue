@@ -51,6 +51,7 @@ export default {
 
 <template>
 <!-- template đã check     -->
+<title>Sản phẩm</title>
     <div id="breadcrumb_background">
     <p id="title_breadcrumb" class="text-center">{{ getTypeProduct($route.params.type) }}</p>
     <nav aria-label="breadcrumb">

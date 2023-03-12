@@ -43,6 +43,7 @@ export default{
 
 <template>
     <!-- template đã check -->
+    <title>Đăng nhập</title>
     <div id="breadcrumb_background">
         <p id="title_breadcrumb" class="text-center">ĐĂNG NHẬP</p>
         <nav aria-label="breadcrumb">

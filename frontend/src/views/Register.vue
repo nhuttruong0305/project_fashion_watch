@@ -33,6 +33,7 @@ export default{
 
 <template>
 <!-- template đã check     -->
+<title>Đăng ký tài khoản</title>
     <div id="breadcrumb_background">
         <p id="title_breadcrumb" class="text-center">ĐĂNG KÝ TÀI KHOẢN</p>
         <nav aria-label="breadcrumb">

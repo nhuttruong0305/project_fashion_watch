@@ -57,6 +57,7 @@ export default{
 </script>
 
 <template>
+    <title>Chi tiết đơn hàng</title>
     <div id="breadcrumb_background">
         <p id="title_breadcrumb" class="text-center">CHI TIẾT CÁC SẢN PHẨM TRONG ĐƠN HÀNG</p>
         <nav aria-label="breadcrumb">

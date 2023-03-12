@@ -67,6 +67,7 @@ export default {
 
 <template>
     <!-- template ở đây đã check -->
+    <title>Giỏ hàng</title>
     <div id="nav_to_home"> 
         <router-link to="/" style="text-decoration: none; color:black;">Trang chủ</router-link>&nbsp;&nbsp;/&nbsp;&nbsp;<span>Giỏ hàng</span>
     </div>

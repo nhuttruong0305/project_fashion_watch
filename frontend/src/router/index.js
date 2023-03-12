@@ -15,6 +15,8 @@ import DetailOrder from "@/views/DetailOrder.vue";
 import ChangeUserProfile from "@/views/ChangeUserProfile.vue";
 import ChangePassword from "@/views/ChangePassword.vue";
 import SearchProduct from "@/views/SearchProduct.vue";
+import News from "@/views/News.vue";
+import Contact from "@/views/Contact.vue";
 
 const routes = [
     {
@@ -154,6 +156,24 @@ const routes = [
         name: "SearchProduct",
         components:{
             default: SearchProduct,
+            header: Header,
+            footer: Footer,
+        }
+    },
+    {
+        path: "/news",
+        name: "News",
+        components:{
+            default: News,
+            header: Header,
+            footer: Footer, 
+        }
+    },
+    {
+        path: "/contact",
+        name: "Contact",
+        components:{
+            default: Contact,
             header: Header,
             footer: Footer,
         }
