@@ -17,6 +17,10 @@ import ChangePassword from "@/views/ChangePassword.vue";
 import SearchProduct from "@/views/SearchProduct.vue";
 import News from "@/views/News.vue";
 import Contact from "@/views/Contact.vue";
+import AdminProductCategory from "@/views/AdminProductCategory.vue";
+import AdminHeader from "../components/AdminHeader.vue";
+import AdminFooter from "../components/AdminFooter.vue";
+import AdminAddProductCategory from "../views/AdminAddProductCategory.vue";
 
 const routes = [
     {
@@ -177,6 +181,20 @@ const routes = [
             header: Header,
             footer: Footer,
         }
+    },
+    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+        path: "/admin/product_category",
+        name: "AdminProductCategory",
+        components:{
+            default: AdminProductCategory,
+            // header: AdminHeader,
+            // footer: AdminFooter,
+        }
+    },
+    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+        path: "/admin/add_product_category",
+        name: "AddProductCategory",
+        component: AdminAddProductCategory,
     }
 ];
 

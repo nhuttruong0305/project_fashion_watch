@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const config = require("./app/config");
 const Auth = require("./app/routes/auth");
 const Order = require("./app/routes/order");
+const ProductCategory = require("./app/routes/product_category");
 
 const app = express();
 
@@ -32,6 +33,9 @@ app.use("/api/products", productRouter);
 
 //route cho api order
 app.use("/api/orders", Order);
+
+//route cho api xử lý loại sản phẩm
+app.use("/api/product_category",ProductCategory);
 
 // handle 404 response
 app.use((req, res, next) => {
