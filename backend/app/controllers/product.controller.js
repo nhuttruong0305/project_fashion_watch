@@ -52,3 +52,15 @@ exports.searchProductByKeyword = async (req, res, next) => {
         return next(new ApiError(500,"Có lỗi xảy ra khi lấy thông tin sản phẩm"));  //Không cần return cũng được
     }
 }
+
+//Cập nhật thông tin 1 sản phẩm (đã chạy đúng)
+exports.updateProduct = async (req, res, next) => {
+    try{
+        const updateDoc = req.body;
+        const options = {returnDocument: "after"};
+        const update = await ProductModel.findByIdAndUpdate(req.params.id, updateDoc, options);
+        return res.send(update);
+    }catch(error){
+        return next(new ApiError(500,"Có lỗi xảy ra khi cập nhật thông tin sản phẩm"));  //Không cần return cũng được
+    }
+}

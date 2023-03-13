@@ -68,7 +68,7 @@ export default{
                 <tbody>
                     <tr v-for="product in product_list">
                         <!-- <td>{{ product._id }}</td> -->
-                        <td>{{ product.productname }}</td>
+                        <td> <router-link :to="{name: 'UpdateProduct', params: {id: `${product._id}`}}">{{ product.productname }}</router-link></td>
                         <td>{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price) }}</td>
                         <td>{{ product.type }}</td>
                         <td>{{ product.description }}</td>

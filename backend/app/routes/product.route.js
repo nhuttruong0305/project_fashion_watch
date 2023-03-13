@@ -19,4 +19,8 @@ router.route("/detail/:id")
 router.route("/searchproduct/bykeyword")
     .get(productController.searchProductByKeyword);
 
+//Cập nhật thông tin sản phẩm 
+router.route("/update/:id")
+    .put(productController.updateProduct);
+
 module.exports = router;

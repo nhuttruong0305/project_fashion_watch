@@ -24,6 +24,11 @@ class ProductService{
     async createProduct(data){
         return (await this.api.post('/',data)).data;
     }
+
+    //Cập nhật thông tin sản phẩm
+    async updateProduct(data, id){
+        return (await this.api.put(`/update/${id}`,data)).data;
+    }
 }
 
 export default new ProductService();

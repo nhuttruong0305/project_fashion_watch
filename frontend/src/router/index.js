@@ -24,6 +24,7 @@ import AdminAddProductCategory from "../views/AdminAddProductCategory.vue";
 import UpdateProductCategory from "../views/UpdateProductCategory.vue";
 import AdminProduct from "../views/AdminProduct.vue";
 import AdminAddProduct from "../views/AdminAddProduct.vue";
+import UpdateProduct from "../views/UpdateProduct.vue";
 
 const routes = [
     {
@@ -213,6 +214,11 @@ const routes = [
         path: "/admin/add_product",
         name: "AddProduct",
         component: AdminAddProduct,
+    },
+    {
+        path: "/admin/update_product/:id",
+        name: "UpdateProduct",
+        component: UpdateProduct,
     }
 ];
 
