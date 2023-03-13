@@ -19,6 +19,11 @@ class ProductService{
     async getProductByKeyword(keyword){
         return (await this.api.get(`/searchproduct/bykeyword?keyword=${keyword}`)).data;
     }
+
+    //Tạo mới sản phẩm
+    async createProduct(data){
+        return (await this.api.post('/',data)).data;
+    }
 }
 
 export default new ProductService();

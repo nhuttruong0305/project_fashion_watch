@@ -34,6 +34,11 @@ const productSchema = new mongoose.Schema(
             type: String,
             require: true,
         },
+        status: {
+            type: String,
+            require: true,
+            default: "Còn kinh doanh",
+        },
         amountinstock: {
             type: Number,
             require: true,

@@ -1,10 +1,15 @@
 <script>
 import AdminProductCategoryService from '../services/admin_product_category.service';
+import NavAdminPage from '../components/NavAdminPage.vue';
 export default {
     data(){
         return{
             product_category_list: [],
         }
+    },
+
+    components:{
+        NavAdminPage,
     },
 
     created(){
@@ -27,13 +32,9 @@ export default {
 <div class="container-fluid" style="background-color: rgb(237, 234, 225);padding: 20px;">
     <div class="row">
         <div class="col-md-3" id="nav_between_admin_page">
-            <h4 class="mt-4">Chastain - TRANG QUẢN TRỊ</h4>
-            <hr>
-            <ul>
-                <li>Quản lý loại sản phẩm</li>
-                <li>Quản lý sản phẩm</li>
-                <li>Quản lý đơn hàng</li>
-            </ul>
+            <!-- Thử tách đoạn này làm component riêng -->
+            <NavAdminPage></NavAdminPage>
+            <!-- Thử tách đoạn này làm component riêng -->
         </div>
         <div class="col-md-8 offset-md-1" id="contain_product_category">
             <h4>Tất cả các loại sản phẩm ở đây</h4>

@@ -22,6 +22,8 @@ import AdminHeader from "../components/AdminHeader.vue";
 import AdminFooter from "../components/AdminFooter.vue";
 import AdminAddProductCategory from "../views/AdminAddProductCategory.vue";
 import UpdateProductCategory from "../views/UpdateProductCategory.vue";
+import AdminProduct from "../views/AdminProduct.vue";
+import AdminAddProduct from "../views/AdminAddProduct.vue";
 
 const routes = [
     {
@@ -201,6 +203,16 @@ const routes = [
         path: "/admin/update_product_category/:number_type",
         name: "UpdateProductCategory",
         component: UpdateProductCategory,
+    },
+    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+        path: "/admin/product",
+        name: "AdminProduct",
+        component: AdminProduct,
+    },
+    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+        path: "/admin/add_product",
+        name: "AddProduct",
+        component: AdminAddProduct,
     }
 ];
 
