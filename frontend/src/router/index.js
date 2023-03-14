@@ -18,13 +18,12 @@ import SearchProduct from "@/views/SearchProduct.vue";
 import News from "@/views/News.vue";
 import Contact from "@/views/Contact.vue";
 import AdminProductCategory from "@/views/AdminProductCategory.vue";
-import AdminHeader from "../components/AdminHeader.vue";
-import AdminFooter from "../components/AdminFooter.vue";
 import AdminAddProductCategory from "../views/AdminAddProductCategory.vue";
 import UpdateProductCategory from "../views/UpdateProductCategory.vue";
 import AdminProduct from "../views/AdminProduct.vue";
 import AdminAddProduct from "../views/AdminAddProduct.vue";
 import UpdateProduct from "../views/UpdateProduct.vue";
+import AdminSearchProduct from "../views/AdminSearchProduct.vue";
 
 const routes = [
     {
@@ -215,10 +214,15 @@ const routes = [
         name: "AddProduct",
         component: AdminAddProduct,
     },
-    {
+    {//cần bảo vệ đường dẫn (chưa bảo vệ)
         path: "/admin/update_product/:id",
         name: "UpdateProduct",
         component: UpdateProduct,
+    },
+    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+        path: "/admin/searchproduct",
+        name: "AdminSearchProduct",
+        component: AdminSearchProduct,
     }
 ];
 

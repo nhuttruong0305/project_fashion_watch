@@ -1,11 +1,12 @@
 <script>
 import ProductService from '../services/product.service';
-
+import ProductCategoryService from '../services/admin_product_category.service';
 export default {
 
     data() {
         return {
             products: [],
+            category_name: '',
         }
     },
 
@@ -20,20 +21,33 @@ export default {
     methods: {
         async getProductByType() {
             const response = await ProductService.getProductByType(this.$route.params.type);
-            this.products = response; 
-        },
-
-        getTypeProduct(type){
-            if(type == "all"){
-                return "Tất cả sản phẩm";
-            }else if(type == 1){
-                return "Đồng hồ nam";
-            }else if(type ==2){
-                return "Đồng hồ nữ";
-            }else{
-                return "Phụ kiện"
+            this.products = response;
+            //Lấy các loại sản phẩm trong DB
+            const category_list = await ProductCategoryService.getAllProductCategory();
+            let isAll = true;
+            for(let i = 0; i < category_list.length; i++){
+                if(this.$route.params.type == category_list[i].number_type){
+                    this.category_name = category_list[i].category_name;
+                    isAll = false;
+                    break;
+                }
+            }
+            if(isAll == true){
+                this.category_name="Tất cả sản phẩm";
             }
         },
+
+        // getTypeProduct(type){
+        //     if(type == "all"){
+        //         return "Tất cả sản phẩm";
+        //     }else if(type == 1){
+        //         return "Đồng hồ nam";
+        //     }else if(type ==2){
+        //         return "Đồng hồ nữ";
+        //     }else{
+        //         return "Phụ kiện"
+        //     }
+        // },
     }
 
 
@@ -53,17 +67,17 @@ export default {
 <!-- template đã check     -->
 <title>Sản phẩm</title>
     <div id="breadcrumb_background">
-    <p id="title_breadcrumb" class="text-center">{{ getTypeProduct($route.params.type) }}</p>
+    <p id="title_breadcrumb" class="text-center">{{ category_name }}</p>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb justify-content-center">
             <li class="breadcrumb-item"><router-link to="/">Trang chủ</router-link></li>&nbsp;
             <li class="breadcrumb-item active" aria-current="page"
-                style="color: #1097cf; font-weight: 600; font-size: 16px;">&nbsp;{{ getTypeProduct($route.params.type) }}</li>
+                style="color: #1097cf; font-weight: 600; font-size: 16px;">&nbsp;{{ category_name }}</li>
         </ol>
     </nav>
 </div>
 <div class="container mt-3">
-    <h3 class="text-center" id="title_product"><span>{{ getTypeProduct($route.params.type) }}</span></h3>
+    <h3 class="text-center" id="title_product"><span>{{ category_name }}</span></h3>
     <div id="list_product" class="row mt-5">
 
         <template v-for="product in products">

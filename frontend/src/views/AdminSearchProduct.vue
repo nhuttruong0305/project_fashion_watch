@@ -8,57 +8,45 @@ export default{
 
     data(){
         return{
-            product_list: [], //danh sách các sản phẩm có trong database
-            keyword_to_find_product: '',
+            product_list: [],
         }
     },
 
     created(){
-        this.getAllProduct()
-    },
+        this.getProductListByKeyword()
+    },  
 
     methods:{
-        async getAllProduct(){
+        async getProductListByKeyword(){
             try{
-                const response = await ProductService.getProductByType("all");
-                this.product_list = response;
+                this.product_list = await ProductService.getProductByKeyword(this.$route.query.keyword);
             }catch(error){
-                alert("Đã xảy ra lỗi khi lấy thông tin sản phẩm");
+                alert("Có lỗi xảy ra khi lấy thông tin sản phẩm");
             }
-        },
-
-        searchProductByKeyword(){
-            this.$router.push({ name: 'AdminSearchProduct', query: { keyword: this.keyword_to_find_product }});
         }
-
     }
 
 }
 </script>
-<template>
+
+<template>   
     <div class="container-fluid" style="background-color: rgb(237, 234, 225);padding: 20px;">
         <div class="row">
             <div class="col-md-3" id="nav_between_admin_page">
-                <!-- Thử tách đoạn này làm component riêng -->
                 <NavAdminPage></NavAdminPage>
-                <!-- Thử tách đoạn này làm component riêng -->
             </div>
             <div class="col-md-8 offset-md-1" style="background-color: white;padding: 17px;">
-                <h4>Tất cả các thông tin sản phẩm ở đây</h4>
+                <h4>Thông tin các sản phẩm được tìm thấy</h4>
                 <button id="btn_add_product"><router-link to="/admin/add_product" style="text-decoration: none;color: black;">Thêm sản phẩm mới</router-link></button>
                 <hr>
             </div>
         </div>
+
         <div class="row" style="background-color: white; margin-top: 20px;">
-            <div class="mt-3 text-center">
-                <label style="margin-right: 10px;" for="input_product_name">Nhập tên sản phẩm muốn tìm</label>
-                <input type="text" id="input_product_name" v-model="keyword_to_find_product" @keyup.enter="searchProductByKeyword()">
-                <i class="fa-solid fa-magnifying-glass" id="icon_search" @click="searchProductByKeyword()"></i>
-            </div>
+            <h3 class="text-center mt-4">Có {{ 3 }} kết quả được tìm thấy</h3>
             <table class="table table-success table-striped mt-3">
                 <thead>
                     <tr>
-                        <!-- <th scope="col">ID</th> -->
                         <th scope="col">Tên sản phẩm</th>
                         <th scope="col">Giá</th>
                         <th scope="col">Loại</th>
@@ -73,12 +61,11 @@ export default{
                 </thead>
                 <tbody>
                     <tr v-for="product in product_list">
-                        <!-- <td>{{ product._id }}</td> -->
                         <td> <router-link :to="{name: 'UpdateProduct', params: {id: `${product._id}`}}">{{ product.productname }}</router-link></td>
-                        <td>{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price) }}</td>
+                        <td>{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}}</td>
                         <td>{{ product.type }}</td>
                         <td>{{ product.description }}</td>
-                        <td>{{product.color}}</td>
+                        <td>{{ product.color }}</td>
                         <td>{{ product.brand }}</td>
                         <td><img style="width: 100px" :src="product.imageURL" alt=""></td>
                         <td>{{ product.origin }}</td>
@@ -100,12 +87,5 @@ export default{
     border-radius: 5px;
     margin-top: 30px;
     background-color: #d1e7dd;
-}
-
-#icon_search{
-    background-color: #d1e7dd;
-    padding: 10px;
-    border-radius: 50%;
-    margin-left:5px;
 }
 </style>

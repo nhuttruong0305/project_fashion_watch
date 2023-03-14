@@ -1,10 +1,12 @@
 <script>
+import ProductCategoryService from "../services/admin_product_category.service";
 export default{
     data(){
         return{
             isLogin: false,
             fullname: '',
-            keyword_to_find_product: ''
+            keyword_to_find_product: '',
+            category_list: [], //danh sách các loại sản phẩm
         }
     },
 
@@ -18,7 +20,8 @@ export default{
     },
 
     methods: {
-        checkUserLogin(){
+        async checkUserLogin(){
+            this.category_list = await ProductCategoryService.getAllProductCategory();
             if(localStorage.getItem("UserLogin")){
                 this.isLogin = true;
                 const userInfo = JSON.parse(localStorage.getItem("UserLogin"));
@@ -110,9 +113,10 @@ export default{
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><router-link :to = "{name: 'Product', params: {type: 'all'}}" class="dropdown-item" href="#" >Tất cả sản phẩm</router-link></li>
-                            <li><router-link :to = "{name: 'Product', params: {type: 1}}" class="dropdown-item" href="#">Đồng hồ nam</router-link></li>
+                            <!-- <li><router-link :to = "{name: 'Product', params: {type: 1}}" class="dropdown-item" href="#">Đồng hồ nam</router-link></li>
                             <li><router-link :to = "{name: 'Product', params: {type: 2}}" class="dropdown-item" href="#">Đồng hồ nữ</router-link></li>
-                            <li><router-link :to = "{name: 'Product', params: {type: 3}}" class="dropdown-item" href="#">Phụ kiện</router-link></li>
+                            <li><router-link :to = "{name: 'Product', params: {type: 3}}" class="dropdown-item" href="#">Phụ kiện</router-link></li> -->
+                            <li v-for="category in category_list"><router-link :to = "{name: 'Product', params: {type: `${category.number_type}`}}" class="dropdown-item" href="#" >{{ category.category_name }}</router-link></li>
                         </ul>
                     </li>
                     <li class="nav-item mx-3">

@@ -1,11 +1,12 @@
 <script>
 import ProductService from '../services/product.service';
-
+import ProductCategoryService from "../services/admin_product_category.service";
     export default{
         data() {
             return {
                 detailproducts: {},
                 quantity: 1,
+                category_name: '',
             }
         },
 
@@ -17,15 +18,12 @@ import ProductService from '../services/product.service';
             async getDetailProduct() {
                 const response = await ProductService.getDetailProduct(this.$route.params.id);
                 this.detailproducts = response;
-            },
-
-            getNameOfType(){
-                if(this.detailproducts.type == 1){
-                    return "Đồng hồ nam";
-                }else if(this.detailproducts.type == 2){
-                    return "Đồng hồ nữ";
-                }else{
-                    return "Phụ kiện";
+                //Lấy các loại sản phẩm ra
+                const category_list = await ProductCategoryService.getAllProductCategory();
+                for(let i = 0; i < category_list.length; i++){
+                    if(this.detailproducts.type == category_list[i].number_type){
+                        this.category_name = category_list[i].category_name;
+                    }
                 }
             },
 
@@ -99,7 +97,7 @@ import ProductService from '../services/product.service';
             <ol class="breadcrumb justify-content-center">
                 <li class="breadcrumb-item"><router-link to="/">Trang chủ</router-link></li>&nbsp;
                 <li style="font-weight: 600;" class="breadcrumb-item">
-                    <router-link :to="{name: 'Product', params: {type: `${detailproducts.type}`}}">{{ getNameOfType() }}</router-link>
+                    <router-link :to="{name: 'Product', params: {type: `${detailproducts.type}`}}">{{ category_name }}</router-link>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page"
                     style="color: #1097cf; font-weight: 600; font-size: 16px;">&nbsp;{{ detailproducts.productname }}</li>
@@ -130,8 +128,9 @@ import ProductService from '../services/product.service';
                     {{detailproducts.description}}
                 </p>
 
-                <p v-if="detailproducts.amountinstock!=0" class="product_availability_status">Còn {{ detailproducts.amountinstock }} sản phẩm &nbsp;&nbsp;<span><i class="fa-solid fa-check-double"></i></span></p>
-                <p v-if="detailproducts.amountinstock==0" class="product_availability_status">Hết hàng&nbsp;&nbsp;<span><i class="fa-solid fa-xmark"></i></span></p>
+                <p v-if="detailproducts.status == 'Ngừng kinh doanh'" id="stop_business">Ngừng kinh doanh</p>
+                <p v-else-if="detailproducts.amountinstock!=0" id="stocking">Còn {{ detailproducts.amountinstock }} sản phẩm &nbsp;&nbsp;<span><i class="fa-solid fa-check-double"></i></span></p>
+                <p v-else-if="detailproducts.amountinstock==0" id="out_of_stock">Hết hàng&nbsp;&nbsp;<span><i class="fa-solid fa-xmark"></i></span></p>
 
                 <div class="row mt-5">
                     <div class="col-3">
@@ -142,7 +141,7 @@ import ProductService from '../services/product.service';
                         <input type="number" id="amount_product_detail_product" class="col-7 mx-sm-3" min="1" :max="limitedQuantityAdded()"
                             name="quantity" v-model="quantity">
                     </div>
-                    <button @click="addProductInCart()" :disabled="limitedQuantityAdded()==0" id="btn_add_into_cart" name="btn_add_into_cart" class="btn">Thêm vào giỏ
+                    <button @click="addProductInCart()" :disabled="limitedQuantityAdded()==0 || detailproducts.status == 'Ngừng kinh doanh'" id="btn_add_into_cart" name="btn_add_into_cart" class="btn">Thêm vào giỏ
                         hàng</button>
                 </div>
                 <hr>
@@ -244,6 +243,24 @@ import ProductService from '../services/product.service';
     font-size: 25px;
     font-weight: 600;
     color: #1097cf;
+}
+
+#stocking{
+    font-size: 25px;
+    font-weight: 600;
+    color: #1097cf;
+}
+
+#out_of_stock{
+    font-size: 25px;
+    font-weight: 600;
+    color: orange;
+}
+
+#stop_business{
+    font-size: 25px;
+    font-weight: 600;
+    color: red;
 }
 
 #amount_product_detail_product{
