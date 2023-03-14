@@ -42,7 +42,7 @@
                     <div class="col-sm-6 col-lg-3">
                         <h4 class="main_footer_title mb-4">VỀ CHÚNG TÔI</h4>
                         <p><router-link to="/about" style="text-decoration: none; color: #fff;">Giới thiệu</router-link></p>
-                        <p><a href="" style="text-decoration: none; color: #fff;">Gửi góp ý, khiếu nại</a></p>
+                        <p><router-link to="/contact" style="text-decoration: none; color: #fff;">Gửi góp ý, khiếu nại</router-link></p>
                         <!-- bổ sung chỗ này khi thêm trang góp ý -->
                     </div>
                     <div class="col-sm-6 col-lg-3">

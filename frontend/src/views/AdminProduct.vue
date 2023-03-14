@@ -55,7 +55,7 @@ export default{
                 <input type="text" id="input_product_name" v-model="keyword_to_find_product" @keyup.enter="searchProductByKeyword()">
                 <i class="fa-solid fa-magnifying-glass" id="icon_search" @click="searchProductByKeyword()"></i>
             </div>
-            <table class="table table-success table-striped mt-3">
+            <table class="table table-success table-striped table-bordered mt-3">
                 <thead>
                     <tr>
                         <!-- <th scope="col">ID</th> -->

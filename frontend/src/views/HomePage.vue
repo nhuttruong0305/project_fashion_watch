@@ -18,21 +18,21 @@ export default {
                 <img class="w-100" src="../assets/img/home/banner_1.png" alt="">
                 <div class="banner_info_absolute_home">
                     <p>ĐỒNG HỒ ĐEO TAY</p>
-                    <a href="">MUA NGAY</a>
+                    <router-link to="/product/all">MUA NGAY</router-link>
                 </div>
             </div>
             <div class="mb-4 col-lg-4 col-sm-6 banner_info_relative_home">
                 <img class="w-100" src="../assets/img/home/banner_2.png" alt="">
                 <div class="banner_info_absolute_home">
                     <p>ĐỒNG HỒ ĐEO TAY</p>
-                    <a href="">MUA NGAY</a>
+                    <router-link to="/product/all">MUA NGAY</router-link>
                 </div>
             </div>
             <div class="mb-4 col-lg-4 col-sm-6 banner_info_relative_home">
                 <img class="w-100" src="../assets/img/home/banner_2.png" alt="">
                 <div class="banner_info_absolute_home">
                     <p>ĐỒNG HỒ ĐEO TAY</p>
-                    <a href="">MUA NGAY</a>
+                    <router-link to="/product/all">MUA NGAY</router-link>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@ export default {
                     <h3 style="font-weight: 600;">MVMT Black Link</h3>
                     <p><span style="font-size: 22px; color: #1097cf; font-weight: 600; margin-right: 20px;">3.200.000đ</span><span style="text-decoration: line-through;">4.500.000đ</span></p>
                     <p class="mt-5">Đồng hồ MVMT Black Link dòng Classic với thiết kế tối giản tinh tế cho các quý ông hiện đại. Nhập khẩu chính hãng từ US. Free Ship toàn quốc!</p>
-                    <div id="buy_btn_flash_sale_home" class="text-center d-flex justify-content-center align-items-center">MUA NGAY</div>
+                    <div id="buy_btn_flash_sale_home" class="text-center d-flex justify-content-center align-items-center"><router-link :to="{name: 'DetailProduct', params: {id: '640ede393c6f82aa357b2c38'}}">MUA NGAY</router-link></div>
                 </div>
             </div>
         </div>
