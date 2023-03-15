@@ -3,43 +3,44 @@ import NavAdminPage from '../components/NavAdminPage.vue';
 import OrderService from '../services/order.service';
 export default{
     components:{
-        NavAdminPage,
-    },  
+        NavAdminPage
+    },
 
     data(){
         return{
             order_list: [],
-            email_to_find_order: '',
+            input_email: '',
         }
     },
 
+    watch:{
+        '$route': 'getOrderByEmail'
+    },
+
     created(){
-        this.getAllOrder()
+        this.getOrderByEmail()
     },
 
     methods:{
-        async getAllOrder(){
+        async getOrderByEmail(){
             try{
-                this.order_list = await OrderService.getAllOrderInDB();
-            }catch(error){  
-                alert("Có lỗi xảy ra khi lấy thông tin các đơn hàng");
+                this.order_list = await OrderService.getOrderListByEmail(this.$route.query.email);
+            }catch(error){
+                alert("Có lỗi xảy ra khi lấy thông tin đơn hàng");
             }
         },
 
-        searchOrderByEmail(){
-            this.$router.push({ name: 'AdminSearchOrder', query: { email: this.email_to_find_order }});
+        searchOrder(){
+            this.$router.push({ name: 'AdminSearchOrder', query: { email: this.input_email }});
         }
     }
 }
 </script>
-
 <template>
     <div class="container-fluid" style="background-color: rgb(237, 234, 225);padding: 20px;">
         <div class="row">
             <div class="col-md-3" id="nav_between_admin_page">
-                <!-- Thử tách đoạn này làm component riêng -->
                 <NavAdminPage></NavAdminPage>
-                <!-- Thử tách đoạn này làm component riêng -->
             </div>
             <div class="col-md-8 offset-md-1" style="background-color: white;padding: 17px;">
                 <h4>Thông tin tất cả các đơn hàng có ở đây</h4>
@@ -49,10 +50,10 @@ export default{
         <div class="row" style="background-color: white; margin-top: 20px;">
             <div class="mt-3 text-center">
                 <label style="margin-right: 10px;" for="input_email">Nhập email để tìm các đơn hàng của email đó</label>
-                <input type="text" id="input_email" v-model="email_to_find_order" @keyup.enter="searchOrderByEmail()">
-                <i class="fa-solid fa-magnifying-glass" id="icon_search" @click="searchOrderByEmail()"></i>
+                <input type="text" id="input_email" v-model="input_email" @keyup.enter="searchOrder()">
+                <i class="fa-solid fa-magnifying-glass" id="icon_search" @click="searchOrder()"></i>
             </div>
-            
+            <h4 class="text-center mt-3">Có {{ order_list.length }} kết quả tìm kiếm</h4>
             <table class="table table-success table-striped table-bordered mt-3">
                 <thead>
                     <tr>
@@ -81,6 +82,7 @@ export default{
                     </tr>
                 </tbody>
             </table>
+
         </div>
     </div>
 </template>

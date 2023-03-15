@@ -9,7 +9,12 @@ export default{
     data(){
         return{
             product_list: [],
+            input_search_product: '',
         }
+    },
+
+    watch:{
+        '$route': 'getProductListByKeyword',
     },
 
     created(){
@@ -23,6 +28,10 @@ export default{
             }catch(error){
                 alert("Có lỗi xảy ra khi lấy thông tin sản phẩm");
             }
+        },
+
+        searchProduct(){
+            this.$router.push({ name: 'AdminSearchProduct', query: { keyword: this.input_search_product}});
         }
     }
 
@@ -43,7 +52,12 @@ export default{
         </div>
 
         <div class="row" style="background-color: white; margin-top: 20px;">
-            <h3 class="text-center mt-4">Có {{ 3 }} kết quả được tìm thấy</h3>
+            <div class="mt-3 text-center">
+                <label style="margin-right: 10px;" for="input_product_name">Nhập tên sản phẩm muốn tìm</label>
+                <input type="text" id="input_product_name" v-model="input_search_product" @keyup.enter="searchProduct()">
+                <i class="fa-solid fa-magnifying-glass" id="icon_search" @click="searchProduct()"></i>
+            </div>
+            <h3 class="text-center mt-4">Có {{ product_list.length }} kết quả được tìm thấy</h3>
             <table class="table table-success table-striped mt-3">
                 <thead>
                     <tr>
@@ -87,5 +101,12 @@ export default{
     border-radius: 5px;
     margin-top: 30px;
     background-color: #d1e7dd;
+}
+
+#icon_search{
+    background-color: #d1e7dd;
+    padding: 10px;
+    border-radius: 50%;
+    margin-left:5px;
 }
 </style>

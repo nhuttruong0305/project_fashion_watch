@@ -26,6 +26,7 @@ import UpdateProduct from "../views/UpdateProduct.vue";
 import AdminSearchProduct from "../views/AdminSearchProduct.vue";
 import AdminOrder from "../views/AdminOrder.vue";
 import AdminDetailOrder from "../views/AdminDetailOrder.vue";
+import AdminSearchOrder from "../views/AdminSearchOrder.vue";
 
 const routes = [
     {
@@ -235,6 +236,11 @@ const routes = [
         path: "/admindetailorder/:id",
         name: "AdminDetailOrder",
         component: AdminDetailOrder,
+    },
+    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+        path: "/admin/search_order",
+        name: "AdminSearchOrder",
+        component: AdminSearchOrder,
     }
 ];
 
