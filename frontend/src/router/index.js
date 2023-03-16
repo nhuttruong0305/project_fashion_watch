@@ -103,20 +103,6 @@ const routes = [
             footer: Footer,
             header: Header,
         }, 
-        // beforeEnter: (to, from, next) => {
-        //     const UserInfo = JSON.parse(localStorage.getItem("UserLogin"));
-        //     const Cart = JSON.parse(localStorage.getItem("Cart"));
-        //     if(UserInfo == null){
-        //         alert("Bạn phải đăng nhập để tiến hành đặt hàng");
-        //         return false;   
-        //     }
-        //     if(Cart == null || Cart.length == 0){
-        //         alert("Bạn chưa có sản phẩm trong giỏ hàng");
-        //         return false;
-        //     }else{
-        //         next();
-        //     }
-        // }
     },
     {//Cần bảo vệ route
         path: "/ordersuccess",
@@ -190,66 +176,64 @@ const routes = [
             footer: Footer,
         }
     },
-    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+    {//cần bảo vệ đường dẫn
         path: "/admin/product_category",
         name: "AdminProductCategory",
         components:{
             default: AdminProductCategory,
-            // header: AdminHeader,
-            // footer: AdminFooter,
         }
     },
-    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+    {//cần bảo vệ đường dẫn
         path: "/admin/add_product_category",
         name: "AddProductCategory",
         component: AdminAddProductCategory,
     },
-    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+    {//cần bảo vệ đường dẫn 
         path: "/admin/update_product_category/:number_type",
         name: "UpdateProductCategory",
         component: UpdateProductCategory,
     },
-    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+    {//cần bảo vệ đường dẫn 
         path: "/admin/product",
         name: "AdminProduct",
         component: AdminProduct,
     },
-    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+    {//cần bảo vệ đường dẫn 
         path: "/admin/add_product",
         name: "AddProduct",
         component: AdminAddProduct,
     },
-    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+    {//cần bảo vệ đường dẫn 
         path: "/admin/update_product/:id",
         name: "UpdateProduct",
         component: UpdateProduct,
     },
-    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+    {//cần bảo vệ đường dẫn 
         path: "/admin/searchproduct",
         name: "AdminSearchProduct",
         component: AdminSearchProduct,
     },
-    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+    {//cần bảo vệ đường dẫn 
         path: "/admin/order",
         name: "AdminOrder",
         component: AdminOrder,
     },
-    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+    {//cần bảo vệ đường dẫn 
         path: "/admindetailorder/:id",
         name: "AdminDetailOrder",
         component: AdminDetailOrder,
     },
-    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+    {//cần bảo vệ đường dẫn 
         path: "/admin/search_order",
         name: "AdminSearchOrder",
         component: AdminSearchOrder,
     },
-    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+    {//cần bảo vệ đường dẫn 
         path: "/admin/account",
         name: "AdminAccount",
         component: AdminAccount,
     },
-    {//cần bảo vệ đường dẫn (chưa bảo vệ)
+    {//cần bảo vệ đường dẫn 
         path: "/admin/search_account",
         name: "AdminSearchAccount",
         component: AdminSearchAccount,
@@ -267,7 +251,7 @@ router.beforeEach((to, from) => {
     
     //Người dùng phải đăng nhập và giỏ hàng không được rỗng để vào trang Order
     if(to.name == 'Order'){
-        //Bạn phải đăng nhập mới vào trnag Order được
+        //Bạn phải đăng nhập mới vào trang Order được
         if(UserLogin == null){
             alert("Bạn phải đăng nhập để tiến hành đặt hàng");
             return '/login';   
@@ -302,6 +286,90 @@ router.beforeEach((to, from) => {
     //Phải đăng nhập rồi mới cho vào trang đổi mật khẩu
     if(to.name == "ChangePassword" && UserLogin == null){
         return '/';
+    }
+
+    //Phải đăng nhập với quyền admin mới vào được AdminProductCategory
+    if(to.name == "AdminProductCategory"){
+        if(UserLogin == null || UserLogin.isAdmin == false){
+            return '/';
+        }
+    }
+
+    //Phải đăng nhập với quyền admin mới vào được AddProductCategory
+    if(to.name == "AddProductCategory"){
+        if(UserLogin == null || UserLogin.isAdmin == false){
+            return '/';
+        }
+    }
+
+    //Phải đăng nhập với quyền admin mới vào được UpdateProductCategory
+    if(to.name == "UpdateProductCategory"){
+        if(UserLogin == null || UserLogin.isAdmin == false){
+            return '/';
+        }
+    }
+
+    //Phải đăng nhập với quyền admin mới vào được AdminProduct
+    if(to.name == "AdminProduct"){
+        if(UserLogin == null || UserLogin.isAdmin == false){
+            return '/';
+        }
+    }
+
+    //Phải đăng nhập với quyền admin để vào AddProduct
+    if(to.name == "AddProduct"){
+        if(UserLogin == null || UserLogin.isAdmin == false){
+            return '/';
+        }
+    }
+
+    //Phải đăng nhập với quyền admin để vào UpdateProduct
+    if(to.name == "UpdateProduct"){
+        if(UserLogin == null || UserLogin.isAdmin == false){
+            return '/';
+        }
+    }
+
+    //Phải đăng nhập với quyền admin để vào AdminSearchProduct
+    if(to.name == "AdminSearchProduct"){
+        if(UserLogin == null || UserLogin.isAdmin == false){
+            return '/';
+        }
+    }
+
+    //Phải đăng nhập với quyền admin để vào AdminOrder
+    if(to.name == "AdminOrder"){
+        if(UserLogin == null || UserLogin.isAdmin == false){
+            return '/';
+        }
+    }
+
+    //Phải đăng nhập với quyền admin để vào AdminDetailOrder
+    if(to.name =="AdminDetailOrder"){
+        if(UserLogin == null || UserLogin.isAdmin == false){
+            return '/';
+        }
+    }
+
+    //Phải đăng nhập với quyền admin để vào AdminSearchOrder
+    if(to.name == "AdminSearchOrder"){
+        if(UserLogin == null || UserLogin.isAdmin == false){
+            return '/';
+        }
+    }
+
+    //Phải đăng nhập với quyền admin để vào AdminAccount
+    if(to.name == "AdminAccount"){
+        if(UserLogin == null || UserLogin.isAdmin == false){
+            return '/';
+        }
+    }
+
+    //Phải đăng nhập bằng quyền admin để vào AdminSearchAccount
+    if(to.name == "AdminSearchAccount"){
+        if(UserLogin == null || UserLogin.isAdmin == false){
+            return '/';
+        }
     }
 })
 

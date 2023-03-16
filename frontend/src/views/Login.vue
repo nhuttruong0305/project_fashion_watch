@@ -27,11 +27,15 @@ export default{
                 }
                 localStorage.setItem('UserLogin', JSON.stringify(UserLogin));
 
-                //Thông báo cho người dùng đã đăng nhập thành công
-                alert("Đăng nhập thành công, hãy mua hàng đi nào !!!");
-
-                //Chuyển hướng qua trang chủ
-                this.$router.push({ name: 'Home' });
+                //Chuyển hướng qua trang chủ nếu tài khoản không phải admin
+                if(user.isAdmin == false){
+                    //Thông báo cho người dùng đã đăng nhập thành công
+                    alert("Đăng nhập thành công, hãy mua hàng đi nào !!!");
+                    this.$router.push({ name: 'Home' });
+                }else{
+                    this.$router.push({ name: 'AdminProductCategory'});
+                }
+                
             }catch(error){
                 alert("Đăng nhập thất bại, hãy thử lại");
             }
