@@ -19,4 +19,13 @@ router.route("/updateprofile/:id")
 //Cập nhật mật khẩu
 router.route("/updatepassword/:id")
     .put(Auth.updatePassword);
+
+//Lấy danh sách tài khoản người dùng (tất cả hoặc theo email)
+router.route("/getaccount/:email")
+    .get(Auth.getAccount);
+
+//Xóa tài khoản người dùng
+router.route("/delete/:email")
+    .delete(Auth.deleteAccount);
+
 module.exports = router;

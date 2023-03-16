@@ -102,3 +102,30 @@ exports.updatePassword = async (req, res, next) => {
         return next(new ApiError(500,"Có lỗi xảy ra khi đổi mật khẩu"));
     }
 }
+
+//Lấy danh sách tài khoản người dùng (tất cả hoặc 1 tài khoản cụ thể theo email)
+exports.getAccount = async (req, res, next) => {
+    try{    
+        const inputEmail = req.params.email;
+        if(inputEmail == "all"){
+            const userAccount = await UserModel.find({isAdmin: false});
+            return res.send(userAccount);
+        }else{
+            const userAccount = await UserModel.findOne({email: inputEmail});
+            return res.send(userAccount);
+        }
+    }catch(error){
+        return next(new ApiError(500,"Có lỗi xảy ra khi lấy thông tin tài khoản người dùng"));
+    }
+}
+
+//Xóa tài khoản người dùng khỏi DB
+exports.deleteAccount = async (req, res, next) => {
+    try{
+        const deleteAccount = await UserModel.deleteOne({email: req.params.email});
+        return res.send(deleteAccount);
+        // res.status(400).json("Xóa thành công");
+    }catch(error){
+        return next(new ApiError(500,"Có lỗi xảy ra khi xóa tài khoản người dùng"));
+    }
+}

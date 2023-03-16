@@ -24,6 +24,16 @@ class AuthService{
     async updatePassword(data, id){
         return (await this.api.put(`/updatepassword/${id}`,data)).data;
     }
+
+    //Lấy danh sách tất cả tài khoản hoặc lấy thông tin 1 tài khoản theo email
+    async getAccountByEmail(email){
+        return (await this.api.get(`/getaccount/${email}`)).data;
+    }
+
+    //Xóa tài khoản người dùng
+    async deleteAccount(email){
+        return (await this.api.delete(`/delete/${email}`)).data;
+    }
 }
 
 export default new AuthService();

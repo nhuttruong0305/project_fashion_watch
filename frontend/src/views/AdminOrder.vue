@@ -27,7 +27,9 @@ export default{
         },
 
         searchOrderByEmail(){
-            this.$router.push({ name: 'AdminSearchOrder', query: { email: this.email_to_find_order }});
+            if(this.email_to_find_order != ''){
+                this.$router.push({ name: 'AdminSearchOrder', query: { email: this.email_to_find_order }});
+            }
         }
     }
 }

@@ -31,7 +31,9 @@ export default{
         },
 
         searchOrder(){
-            this.$router.push({ name: 'AdminSearchOrder', query: { email: this.input_email }});
+            if(this.input_email != ''){
+                this.$router.push({ name: 'AdminSearchOrder', query: { email: this.input_email }});
+            }
         }
     }
 }
