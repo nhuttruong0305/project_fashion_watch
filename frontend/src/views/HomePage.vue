@@ -1,10 +1,4 @@
 <script>
-import Header from "../components/Header.vue";
-export default {
-    components: {
-        Header,
-    }
-}
 </script>
 
 <template>
@@ -43,7 +37,7 @@ export default {
         <div class="row mt-5" id = "featured_products_home">
             <div class="col-lg-4 col-6 featured_products_item_home">
                 <a href=""><img src="https://bizweb.dktcdn.net/100/438/171/products/sp10-c071025e-52d6-4c86-8e35-21f600ee136b.jpg?v=1632724245347" alt=""></a>
-                <a href="" class="d-block text-center name_of_featured_products_home">Black Link</a>
+                <a href="" class="d-block text-center name_of_featured_products_home">MVMT Black Link</a>
                 <p class="text-center">3.200.000</p>
             </div>
             <div class="col-lg-4 col-6 featured_products_item_home">
@@ -85,7 +79,7 @@ export default {
                     <h3 style="font-weight: 600;">MVMT Black Link</h3>
                     <p><span style="font-size: 22px; color: #1097cf; font-weight: 600; margin-right: 20px;">3.200.000đ</span><span style="text-decoration: line-through;">4.500.000đ</span></p>
                     <p class="mt-5">Đồng hồ MVMT Black Link dòng Classic với thiết kế tối giản tinh tế cho các quý ông hiện đại. Nhập khẩu chính hãng từ US. Free Ship toàn quốc!</p>
-                    <div id="buy_btn_flash_sale_home" class="text-center d-flex justify-content-center align-items-center"><router-link :to="{name: 'DetailProduct', params: {id: '640ede393c6f82aa357b2c38'}}">MUA NGAY</router-link></div>
+                    <div id="buy_btn_flash_sale_home" class="text-center d-flex justify-content-center align-items-center"><router-link style="text-decoration: none; color: black;" :to="{name: 'DetailProduct', params: {id: '640ede393c6f82aa357b2c38'}}">MUA NGAY</router-link></div>
                 </div>
             </div>
         </div>
