@@ -1,15 +1,30 @@
 <script>
 import AuthService from "../services/auth.service";
+import { Form, Field, ErrorMessage } from 'vee-validate';
+import * as yup from 'yup';
+
+const schema = yup.object({
+    fullname_register: yup.string().required("Bạn chưa nhập họ và tên"),
+    email_register: yup.string().required("Bạn chưa nhập email").email("Email chưa hợp lệ"),
+    phone_number_register: yup.string().min(10, "Số điện thoại phải có 10 số").max(10, "Số điện thoại có tối đa 10 số"),
+    password_register: yup.string().required("Bạn chưa nhập mật khẩu").min(5, "Mật khẩu tối thiểu 5 kí tự"),
+});
 
 export default{
     data(){
         return{
+            schema,
             fullname: '',
             email: '',
             phonenumber: '',
-            password: ''
+            password: '',
         } 
     },
+
+    components:{
+        Field, Form, ErrorMessage,
+    },
+
     methods:{
         async register(){    
             try{
@@ -19,11 +34,18 @@ export default{
                     phonenumber: this.phonenumber,
                     password: this.password,
                 });
-                // console.log(user);
                 alert("Đăng ký tài khoản thành công");
                 this.$router.push({ name: 'Login' });
             }catch(error){
                 alert("Email đã được đăng ký, vui lòng sử dụng email khác");
+            }
+        },
+
+        inputOnlyNumber(event){
+            if(event.keyCode<48 || event.keyCode>57){
+                event.preventDefault();
+            }else{
+                return true;
             }
         }
     }
@@ -49,7 +71,7 @@ export default{
         <h3 id="title_register" class="text-center">ĐĂNG KÝ TÀI KHOẢN</h3>
         <div class="row">
             <div class="col-lg"></div>
-            <form @submit.prevent="register()" class="col" id="form_register" style="padding: 20px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"> 
+            <Form :validation-schema="schema" @submit="register()" class="col" style="padding: 20px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"> 
                 <div id="nav_form_login" class="row border-bottom">
                     <div class="col text-center nav_login_register border-end"><router-link to="/login" id="switch_login">Đăng nhập</router-link></div> 
                     <div class="col text-center nav_login_register"><a style="color: black; pointer-events: none;">Đăng ký</a></div>
@@ -57,28 +79,35 @@ export default{
 
                 <div class="my-3">
                     <label for="fullname_register" class="form-label">Họ tên</label>
-                    <input type="text" name="fullname_register" class="form-control" id="fullname_register" v-model="fullname" required>
+                    <Field type="text" name="fullname_register" class="form-control" id="fullname_register" v-model="fullname"/>
+                    <ErrorMessage style="color:red;" name="fullname_register" />
                 </div>
 
                 <div class="mb-3">
                     <label for="email_register" class="form-label">Email</label>
-                    <input type="email" name="email_register" class="form-control" id="email_register" aria-describedby="emailHelp" v-model="email" required>
-                <div id="emailHelp" class="form-text">Chúng tôi sẽ không bao giờ chia sẻ email của bạn với bất kỳ ai khác.</div>
+                    <Field type="email" name="email_register" class="form-control" id="email_register" aria-describedby="emailHelp" v-model="email"/>
+                    <div id="emailHelp" class="form-text">Chúng tôi sẽ không bao giờ chia sẻ email của bạn với bất kỳ ai khác.</div>
+                    <ErrorMessage style="color: red" name="email_register" />     
                 </div>
+                
                 <div class="mb-3">
                     <label for="phone_number_register" class="form-label">Số điện thoại</label>
-                    <input type="text" name="phone_number_register" class="form-control" id="phone_number_register" v-model="phonenumber" required>
+                    <Field type="text" name="phone_number_register" class="form-control" id="phone_number_register" v-model="phonenumber" @keypress="inputOnlyNumber($event)"/>
+                    <ErrorMessage style="color:red" name="phone_number_register" />
                 </div>
+                
                 <div class="mb-3">
                     <label for="password_register" class="form-label">Mật khẩu</label>
-                    <input type="password" name="password_register" class="form-control" id="password_register" v-model="password" required>
+                    <Field type="password" name="password_register" class="form-control" id="password_register" v-model="password" />
+                    <ErrorMessage style="color: red" name="password_register" />
                 </div>
+                
                 <!-- <div class="mb-3">
                     <label for="password_repeat_register" class="form-label">Nhập lại mật khẩu</label>
                     <input type="password" name="password_repeat_register" class="form-control" id="password_repeat_register">
                 </div> -->
                 <button type="submit" name="btn_register" class="btn btn-primary d-block w-100">Tạo tài khoản</button> 
-            </form>
+            </Form>
             <div class="col-lg"></div>
         </div>
     </div>
