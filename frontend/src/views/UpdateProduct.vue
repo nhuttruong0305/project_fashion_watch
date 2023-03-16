@@ -74,6 +74,14 @@ export default{
                     alert("Có lỗi xảy ra khi cập nhật thông tin sản phẩm");
                 }
             }
+        },
+
+        inputOnlyNumber(event){
+            if(event.keyCode<48 || event.keyCode>57){
+                event.preventDefault();
+            }else{
+                return true;
+            }
         }
     }
 }
@@ -94,7 +102,7 @@ export default{
                     </div>
                     <div class="mt-3">
                         <label for="input_price" class="form-label">Giá</label>
-                        <input type="text" id="input_price" class="form-control" required v-model="price">
+                        <input type="text" id="input_price" class="form-control" required v-model="price" @keypress="inputOnlyNumber($event)">
                     </div>
                     <div class="mt-3">
                         <label for="input_type" class="form-label">Loại sản phẩm</label>
@@ -131,7 +139,7 @@ export default{
                     </div>
                     <div class="mt-3">
                         <label for="input_amountinstock" class="form-label">Số lượng trong kho</label>
-                        <input type="text" id="input_amountinstock" class="form-control" required v-model="amountinstock"> 
+                        <input type="text" id="input_amountinstock" class="form-control" required v-model="amountinstock" @keypress="inputOnlyNumber($event)"> 
                     </div>
                     <button type="submit" id="btn_update_product">Cập nhật</button>
                 </form>
