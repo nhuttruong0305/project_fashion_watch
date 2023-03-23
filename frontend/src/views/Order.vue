@@ -1,10 +1,39 @@
 <script>
 import OrderService from '../services/order.service';
-
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
 export default{
+    components:{
+        Form,
+        Field, 
+        ErrorMessage,
+    },
     
     data() {
+        const orderFormSchema = yup.object().shape({
+            fullname: yup
+                .string()
+                .required("Bạn chưa điền tên người nhận")
+                .min(2,"Họ và tên phải có ít nhất 2 ký tự")
+                .max(50,"Họ tên có nhiều nhất 50 ký tự"),
+            email: yup
+                .string()
+                .required("Bạn chưa nhập email")
+                .email("Email chưa hợp lệ"),    
+            phonenumber: yup
+                .string()
+                .matches(
+                    /((09|03|07|08|05)+([0-9]{8})\b)/g,
+                    "Số điện thoại không hợp lệ."
+                ),
+            address: yup
+                .string()
+                .min(15, "Địa chỉ cung cấp phải nhiều hơn 15 ký tự")   
+                .max(100, "Địa chỉ tối đa 100 ký tự."
+                ),
+        }); 
         return {
+            orderFormSchema,
             fullname: '',
             email: '',
             phonenumber: '',
@@ -12,7 +41,7 @@ export default{
             products: [],
             note: '',
             total: 20000,
-            payment: '',
+            payment: 'Thanh toán tiền mặt',
             status: 'Chưa xử lý',
         }
     },
@@ -85,24 +114,28 @@ export default{
             <div class="row">
                 <div class="col">
                     <h5>Thông tin nhận hàng</h5>
-                    <form @submit.prevent="createOrderForCustomer()">
+                    <Form @submit="createOrderForCustomer()" :validation-schema="orderFormSchema">
                         <div class="mb-3">
                             <label for="fullnameOrder" class="form-label">Họ và tên người nhận</label>
-                            <input type="text" class="form-control" id="fullnameOrder" required v-model="fullname">
+                            <Field name="fullname" type="text" class="form-control" id="fullnameOrder" required v-model="fullname"/>
+                            <ErrorMessage class="errorText" name="fullname" />
                         </div>
                         <div class="mb-3">
                             <label for="emailOrder" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="emailOrder" required v-model="email">
+                            <Field name="email" type="email" class="form-control" id="emailOrder" required v-model="email"/>
+                            <ErrorMessage class="errorText" name="email" />
                         </div>
 
                         <div class="mb-3">
                             <label for="phoneNumberOrder" class="form-label">Số điện thoại</label>
-                            <input type="text" class="form-control" id="phoneNumberOrder" required v-model="phonenumber">
+                            <Field name="phonenumber" type="text" class="form-control" id="phoneNumberOrder" required v-model="phonenumber"/>
+                            <ErrorMessage class="errorText" name="phonenumber"/>
                         </div>
 
                         <div class="mb-3">
                             <label for="addressOrder" class="form-label">Địa chỉ</label>
-                            <input type="text" class="form-control" id="addressOrder" required v-model="address">
+                            <Field name="address" type="text" class="form-control" id="addressOrder" required v-model="address"/>
+                            <ErrorMessage class="errorText" name="address"/>
                         </div>
                         
                         <div class="mb-3">
@@ -121,9 +154,7 @@ export default{
                         <div class="mt-5">
                             <button type="submit" id="btn_agree_order">ĐẶT HÀNG NGAY</button>
                         </div>
-                        
-                    </form>
-
+                    </Form>
                 </div> 
             </div>
         </div>
@@ -200,5 +231,9 @@ export default{
     background-color:bisque;
     border: 0px;
     padding: 10px;
+}
+
+.errorText{
+    color: red;
 }
 </style>
