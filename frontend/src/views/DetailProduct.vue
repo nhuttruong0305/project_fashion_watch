@@ -10,20 +10,24 @@ import ProductCategoryService from "../services/admin_product_category.service";
             }
         },
 
-        created() { //đổi từ mounted
+        created() { 
             this.getDetailProduct();
         },
 
         methods: {
-            async getDetailProduct() {
-                const response = await ProductService.getDetailProduct(this.$route.params.id);
-                this.detailproducts = response;
-                //Lấy các loại sản phẩm ra
-                const category_list = await ProductCategoryService.getAllProductCategory();
-                for(let i = 0; i < category_list.length; i++){
-                    if(this.detailproducts.type == category_list[i].number_type){
-                        this.category_name = category_list[i].category_name;
+            async getDetailProduct() { //nếu chạy xảy ra lỗi thì có thể bỏ try catch giữ lại phần code trong try
+                try{
+                    const response = await ProductService.getDetailProduct(this.$route.params.id);
+                    this.detailproducts = response;
+                    //Lấy các loại sản phẩm ra
+                    const category_list = await ProductCategoryService.getAllProductCategory();
+                    for(let i = 0; i < category_list.length; i++){
+                        if(this.detailproducts.type == category_list[i].number_type){
+                            this.category_name = category_list[i].category_name;
+                        }
                     }
+                }catch(e){
+                    alert("Có lỗi xảy ra khi lấy thông tin chi tiết sản phẩm");
                 }
             },
 

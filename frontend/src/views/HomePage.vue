@@ -1,6 +1,3 @@
-<script>
-</script>
-
 <template>
     <title>Trang chủ</title>
     <div>
@@ -18,14 +15,14 @@
             <div class="mb-4 col-lg-4 col-sm-6 banner_info_relative_home">
                 <img class="w-100" src="../assets/img/home/banner_2.png" alt="">
                 <div class="banner_info_absolute_home">
-                    <p>ĐỒNG HỒ ĐEO TAY</p>
+                    <p>SALE SỐC ĐẾN 60%</p>
                     <router-link to="/product/all">MUA NGAY</router-link>
                 </div>
             </div>
             <div class="mb-4 col-lg-4 col-sm-6 banner_info_relative_home">
                 <img class="w-100" src="../assets/img/home/banner_2.png" alt="">
                 <div class="banner_info_absolute_home">
-                    <p>ĐỒNG HỒ ĐEO TAY</p>
+                    <p>DEAL HOT ĐỘC QUYỀN</p>
                     <router-link to="/product/all">MUA NGAY</router-link>
                 </div>
             </div>
@@ -34,36 +31,36 @@
 
     <div class="container">
         <h4 class="text-center title_section_home"><span>SẢN PHẨM NỔI BẬT</span></h4>
-        <div class="row mt-5" id = "featured_products_home">
+        <div class="row mt-5" id="featured_products_home">
             <div class="col-lg-4 col-6 featured_products_item_home">
-                <a href=""><img src="https://bizweb.dktcdn.net/100/438/171/products/sp10-c071025e-52d6-4c86-8e35-21f600ee136b.jpg?v=1632724245347" alt=""></a>
-                <a href="" class="d-block text-center name_of_featured_products_home">MVMT Black Link</a>
-                <p class="text-center">3.200.000</p>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '640ede393c6f82aa357b2c38'}}"><img src="https://bizweb.dktcdn.net/100/438/171/products/sp10-c071025e-52d6-4c86-8e35-21f600ee136b.jpg?v=1632724245347" alt=""></router-link>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '640ede393c6f82aa357b2c38'}}" class="d-block text-center name_of_featured_products_home">MVMT Black Link</router-link>
+                <p class="text-center price_in_homepage">{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(3200000) }}</p>
             </div>
             <div class="col-lg-4 col-6 featured_products_item_home">
-                <a href=""><img src="https://bizweb.dktcdn.net/100/438/171/products/sp1.jpg?v=1632716609323" alt=""></a>
-                <a href="" class="d-block text-center name_of_featured_products_home">Orient Champion Gold</a>
-                <p class="text-center">3.200.000</p>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '64133282b3e0b9118df1c682'}}"><img src="https://bizweb.dktcdn.net/100/438/171/products/sp1.jpg?v=1632716609323" alt=""></router-link>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '64133282b3e0b9118df1c682'}}" class="d-block text-center name_of_featured_products_home">Orient Champion Gold</router-link>
+                <p class="text-center price_in_homepage">{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(5700000) }}</p>
             </div>
             <div class="col-lg-4 col-6 featured_products_item_home">
-                <a href=""><img src="https://bizweb.dktcdn.net/100/438/171/products/sp3.jpg?v=1632717292173" alt=""></a>
-                <a href="" class="d-block text-center name_of_featured_products_home">Hublot Axiom</a>
-                <p class="text-center">3.200.000</p>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '64133223b3e0b9118df1c678'}}"><img src="https://bizweb.dktcdn.net/100/438/171/products/sp3.jpg?v=1632717292173" alt=""></router-link>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '64133223b3e0b9118df1c678'}}" class="d-block text-center name_of_featured_products_home">Hublot Axiom</router-link>
+                <p class="text-center price_in_homepage">{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(4600000) }}</p>
             </div>
             <div class="col-lg-4 col-6 featured_products_item_home">
-                <a href=""><img src="https://bizweb.dktcdn.net/100/438/171/products/sp19.jpg?v=1632716413480" alt=""></a>
-                <a href="" class="d-block text-center name_of_featured_products_home">MVMT Coronada Blanc</a>
-                <p class="text-center">3.200.000</p>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '641d55ac0eab60f43694848a'}}"><img src="https://bizweb.dktcdn.net/100/438/171/products/sp19.jpg?v=1632716413480" alt=""></router-link>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '641d55ac0eab60f43694848a'}}" class="d-block text-center name_of_featured_products_home">MVMT Coronada Blanc</router-link>
+                <p class="text-center price_in_homepage">{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(3800000) }}</p>
             </div>
             <div class="col-lg-4 col-6 featured_products_item_home">
-                <a href=""><img src="https://bizweb.dktcdn.net/100/438/171/products/sp15.jpg?v=1632715884937" alt=""></a>
-                <a href="" class="d-block text-center name_of_featured_products_home">Rolex S1</a>
-                <p class="text-center">3.200.000</p>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '640edf023c6f82aa357b2c3c'}}"><img src="https://bizweb.dktcdn.net/100/438/171/products/sp15.jpg?v=1632715884937" alt=""></router-link>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '640edf023c6f82aa357b2c3c'}}" class="d-block text-center name_of_featured_products_home">Rolex S1</router-link>
+                <p class="text-center price_in_homepage">{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(2800000) }}</p>
             </div>
             <div class="col-lg-4 col-6 featured_products_item_home">
-                <a href=""><img src="https://bizweb.dktcdn.net/100/438/171/products/sp14.jpg?v=1632715768917" alt=""></a>
-                <a href="" class="d-block text-center name_of_featured_products_home">Orient Aubrey</a>
-                <p class="text-center">3.200.000</p>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '641d5b730eab60f436948501'}}"><img src="https://bizweb.dktcdn.net/100/438/171/products/sp14.jpg?v=1632715768917" alt=""></router-link>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '641d5b730eab60f436948501'}}" class="d-block text-center name_of_featured_products_home">Orient Aubrey</router-link>
+                <p class="text-center price_in_homepage">{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(4600000) }}</p>
             </div>
         </div>
     </div>
@@ -89,24 +86,24 @@
         <h4 class="text-center title_section_home"><span>SẢN PHẨM MỚI VỀ</span></h4>
         <div class="row mt-5" id="new_product_home">
             <div class="col-6 col-md-3 new_product_item_home">
-                <a class="d-block" href=""><img src="https://bizweb.dktcdn.net/100/438/171/products/sp17.jpg?v=1632716177640" alt=""></a>
-                <a href="" class="d-block text-center mt-3 name_of_new_product_home">MVMT Rodeo</a>
-                <p class="text-center price_of_new_product_home">3.500.000đ</p>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '641d5a6e0eab60f4369484b7'}}"><img src="https://bizweb.dktcdn.net/100/438/171/products/sp17.jpg?v=1632716177640" alt=""></router-link>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '641d5a6e0eab60f4369484b7'}}" class="d-block text-center mt-3 name_of_new_product_home">Citizen Rodeo</router-link>
+                <p class="text-center price_of_new_product_home">{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(3500000) }}</p>
             </div>
             <div class="col-6 col-md-3 new_product_item_home">
-                <a class="d-block" href=""><img src="https://bizweb.dktcdn.net/100/438/171/products/sp23.jpg?v=1632726505467" alt=""></a>
-                <a href="" class="d-block text-center mt-3 name_of_new_product_home">MVMT Twist Cuff</a>
-                <p class="text-center price_of_new_product_home">2.400.000đ</p>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '641d5e200eab60f436948544'}}"><img src="https://bizweb.dktcdn.net/100/438/171/products/sp23.jpg?v=1632726505467" alt=""></router-link>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '641d5e200eab60f436948544'}}" class="d-block text-center mt-3 name_of_new_product_home">Calvin Klein Twist Cuff</router-link>
+                <p class="text-center price_of_new_product_home">{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(2400000) }}</p>
             </div>
             <div class="col-6 col-md-3 new_product_item_home">
-                <a class="d-block" href=""><img src="https://bizweb.dktcdn.net/100/438/171/products/sp12.jpg?v=1632715269983" alt=""></a>
-                <a href="" class="d-block text-center mt-3 name_of_new_product_home">Daniel Wellington Sherry</a>
-                <p class="text-center price_of_new_product_home">3.600.000đ</p>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '640ef31e3c6f82aa357b2c73'}}"><img src="https://bizweb.dktcdn.net/100/438/171/products/sp12.jpg?v=1632715269983" alt=""></router-link>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '640ef31e3c6f82aa357b2c73'}}" class="d-block text-center mt-3 name_of_new_product_home">Daniel Wellington Sherry</router-link>
+                <p class="text-center price_of_new_product_home">{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(3600000) }}</p>
             </div>
             <div class="col-6 col-md-3 new_product_item_home">
-                <a class="d-block" href=""><img src="https://bizweb.dktcdn.net/100/438/171/products/sp20.jpg?v=1632725889447" alt=""></a>
-                <a href="" class="d-block text-center mt-3 name_of_new_product_home">MVMT Origin Bracelet</a>
-                <p class="text-center price_of_new_product_home">2.800.000đ</p>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '640edf823c6f82aa357b2c3e'}}"><img src="https://bizweb.dktcdn.net/100/438/171/products/sp20.jpg?v=1632725889447" alt=""></router-link>
+                <router-link :to="{name: 'DetailProduct',  params: {id: '640edf823c6f82aa357b2c3e'}}" class="d-block text-center mt-3 name_of_new_product_home">Pandora Origin Bracelet</router-link>
+                <p class="text-center price_of_new_product_home">{{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(2800000) }}</p>
             </div>      
         </div>
     </div>
@@ -261,5 +258,11 @@
 
 .summary_content_news{
     margin-top: 15px;
+}
+
+.price_in_homepage, .price_of_new_product_home{
+    color: #1097cf;
+    font-size: 20px;
+    font-weight: 600;
 }
 </style>

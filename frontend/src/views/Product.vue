@@ -36,18 +36,6 @@ export default {
                 this.category_name="Tất cả sản phẩm";
             }
         },
-
-        // getTypeProduct(type){
-        //     if(type == "all"){
-        //         return "Tất cả sản phẩm";
-        //     }else if(type == 1){
-        //         return "Đồng hồ nam";
-        //     }else if(type ==2){
-        //         return "Đồng hồ nữ";
-        //     }else{
-        //         return "Phụ kiện"
-        //     }
-        // },
     }
 
 
@@ -82,11 +70,11 @@ export default {
 
         <template v-for="product in products">
             <div class="col-md-3 col-6 list_item_product" data-aos="flip-left">
-                <router-link :to = "{name: 'DetailProduct', params: {id: `${product._id}`}}"  class="d-block">
+                <router-link :to="{name: 'DetailProduct', params: {id: `${product._id}`}}"  class="d-block">
                     <img :src="product.imageURL"
                         alt="">
                 </router-link>
-                <router-link :to = "{name: 'DetailProduct', params: {id: `${product._id}`}}" class="d-block text-center mt-3">{{ product.productname }}</router-link>
+                <router-link :to="{name: 'DetailProduct', params: {id: `${product._id}`}}" class="d-block text-center mt-3">{{ product.productname }}</router-link>
                 <p class="text-center">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}}</p>
             </div>
         </template>

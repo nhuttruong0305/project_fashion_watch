@@ -239,4 +239,8 @@ export default{
 #icon_cart_header{
     color: #1097cf;
 }
+
+#btn_toogle{
+    margin: 0 auto;
+}
 </style>
