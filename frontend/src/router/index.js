@@ -29,6 +29,7 @@ import AdminDetailOrder from "../views/AdminDetailOrder.vue";
 import AdminSearchOrder from "../views/AdminSearchOrder.vue";
 import AdminAccount from "../views/AdminAccount.vue";
 import AdminSearchAccount from "../views/AdminSearchAccount.vue";
+import AdminSearchOrderByPhoneNumber from "../views/AdminSearchOrderByPhoneNumber.vue";
 
 const routes = [
     {
@@ -237,6 +238,11 @@ const routes = [
         path: "/admin/search_account",
         name: "AdminSearchAccount",
         component: AdminSearchAccount,
+    },
+    {//cần bảo vệ đường dẫn
+        path: "/admin/search_order_by_phonenumber",
+        name: "AdminSearchOrderByPhoneNumber",
+        component: AdminSearchOrderByPhoneNumber,
     }
 ];
 
@@ -367,6 +373,12 @@ router.beforeEach((to, from) => {
 
     //Phải đăng nhập bằng quyền admin để vào AdminSearchAccount
     if(to.name == "AdminSearchAccount"){
+        if(UserLogin == null || UserLogin.isAdmin == false){
+            return '/';
+        }
+    }
+
+    if(to.name == "AdminSearchOrderByPhoneNumber"){
         if(UserLogin == null || UserLogin.isAdmin == false){
             return '/';
         }

@@ -103,3 +103,13 @@ exports.cancelOrder = async (req, res, next) => {
         return next(new ApiError(500, "Có lỗi xảy ra khi hủy đơn hàng"));
     }
 }
+
+//Lấy danh sách đơn hàng theo số điện thoại
+exports.getOrderByPhoneNumber = async (req, res, next) => {
+    try{
+        const list_order = await OrderModel.find({phonenumber: req.params.phonenumber});
+        return res.send(list_order);
+    }catch(e){
+        return next(new ApiError(500, "Có lỗi xảy ra khi hủy đơn hàng"));
+    }
+}

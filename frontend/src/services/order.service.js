@@ -34,6 +34,11 @@ class OrderService{
     async updateOrder(data, id){
         return (await this.api.put(`/update/${id}`,data)).data;
     }
+
+    //Lấy thông tin đơn hàng theo số điện thoại
+    async getOrderByPhoneNumber(phonenumber){
+        return (await this.api.get(`/phonenumber/${phonenumber}`)).data;
+    }
 }
 
 export default new OrderService();

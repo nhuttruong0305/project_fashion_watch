@@ -10,6 +10,7 @@ export default{
         return{
             order_list: [],
             email_to_find_order: '',
+            phonenumber_to_find_order: '',
         }
     },
 
@@ -30,6 +31,12 @@ export default{
             if(this.email_to_find_order != ''){
                 this.$router.push({ name: 'AdminSearchOrder', query: { email: this.email_to_find_order }});
             }
+        },
+
+        searchOrderByPhoneNumber(){
+            if(this.phonenumber_to_find_order != ''){
+                this.$router.push({ name: 'AdminSearchOrderByPhoneNumber', query: {phonenumber: this.phonenumber_to_find_order }});
+            }
         }
     }
 }
@@ -49,10 +56,19 @@ export default{
             </div>
         </div>
         <div class="row" style="background-color: white; margin-top: 20px;">
-            <div class="mt-3 text-center">
-                <label style="margin-right: 10px;" for="input_email">Nhập email để tìm các đơn hàng của email đó</label>
-                <input type="text" id="input_email" v-model="email_to_find_order" @keyup.enter="searchOrderByEmail()">
-                <i class="fa-solid fa-magnifying-glass" id="icon_search" @click="searchOrderByEmail()"></i>
+            <div class="mt-3">
+                <table id="table_contain_search_order">
+                    <tr>
+                        <td><label for="input_email">Nhập email để tìm các đơn hàng của email đó</label></td>
+                        <td><input type="text" id="input_email" v-model="email_to_find_order" @keyup.enter="searchOrderByEmail()"></td>
+                        <td><i class="fa-solid fa-magnifying-glass" id="icon_search" @click="searchOrderByEmail()"></i></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input_phonenumber">Hoặc nhập số điện thoại để tìm thông tin đơn hàng</label></td>
+                        <td><input type="text" id="input_phonenumber" v-model="phonenumber_to_find_order" @keyup.enter="searchOrderByPhoneNumber()"></td>
+                        <td><i class="fa-solid fa-magnifying-glass" id="icon_search" @click="searchOrderByPhoneNumber()"></i></td>
+                    </tr>
+                </table>           
             </div>
             
             <table class="table table-success table-striped table-bordered mt-3">
@@ -96,5 +112,15 @@ export default{
     padding: 10px;
     border-radius: 50%;
     margin-left:5px;
+}
+
+#table_contain_search_order{
+    width: 600px;
+    display: block;
+    margin: 0 auto;
+}
+
+#input_email, #input_phonenumber{
+    border-radius: 5px;
 }
 </style>

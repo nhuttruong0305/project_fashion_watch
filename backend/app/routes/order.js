@@ -27,4 +27,8 @@ router.route("/update/:id")
 router.route("/cancel/:id")
     .put(Order.cancelOrder);
 
+//Tìm kiếm đơn hàng theo số điện thoại
+router.route("/phonenumber/:phonenumber")
+    .get(Order.getOrderByPhoneNumber);
+
 module.exports = router;    
