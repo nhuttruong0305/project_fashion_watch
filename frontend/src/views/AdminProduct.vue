@@ -1,6 +1,7 @@
 <script>
 import NavAdminPage from '../components/NavAdminPage.vue';
 import ProductService from '../services/product.service';
+import OrderService from '../services/order.service';
 export default{
     components:{
         NavAdminPage,
@@ -10,6 +11,8 @@ export default{
         return{
             product_list: [], //danh sách các sản phẩm có trong database
             keyword_to_find_product: '',
+            all_order: [], //mảng tất cả các đơn hàng
+            array_of_products_sold: [],
         }
     },
 
@@ -20,10 +23,40 @@ export default{
     methods:{
         async getAllProduct(){
             try{
+                //Lấy tất cả sản phẩm hiện có trong DB
                 const response = await ProductService.getProductByType("all");
                 this.product_list = response;
+
+                //Tạo mảng mới, mảng các object chứa 2 thuộc tính: _id của sản phẩm và số lượng đã bán
+                this.product_list.forEach((value) => {
+                    this.array_of_products_sold.push({
+                        _id: value._id,
+                        quantity_sold: 0
+                    })
+                });
+                //Lấy tất cả đơn hàng để chạy vòng lặp lấy ra số lượng sản phẩm đã bán
+                this.all_order = await OrderService.getAllOrderInDB();
+                for(let i = 0; i < this.all_order.length; i++){
+                    if(this.all_order[i].status == "Đã nhận hàng"){
+                        this.all_order[i].products.forEach((value) => {
+                            for(let j = 0; j < this.array_of_products_sold.length; j++){
+                                if(value._id == this.array_of_products_sold[j]._id){
+                                    this.array_of_products_sold[j].quantity_sold+=value.quantity;
+                                }
+                            }
+                        },)
+                    }
+                }
             }catch(error){
                 alert("Đã xảy ra lỗi khi lấy thông tin sản phẩm");
+            }
+        },
+
+        getQuantitySold(_id){
+            for(let i = 0; i< this.array_of_products_sold.length; i++){
+                if(this.array_of_products_sold[i]._id == _id){
+                    return this.array_of_products_sold[i].quantity_sold;
+                }
             }
         },
 
@@ -39,9 +72,7 @@ export default{
     <div class="container-fluid" style="background-color: rgb(237, 234, 225);padding: 20px;">
         <div class="row">
             <div class="col-md-3" id="nav_between_admin_page">
-                <!-- Thử tách đoạn này làm component riêng -->
                 <NavAdminPage></NavAdminPage>
-                <!-- Thử tách đoạn này làm component riêng -->
             </div>
             <div class="col-md-8 offset-md-1" style="background-color: white;padding: 17px;">
                 <h4>Tất cả các thông tin sản phẩm ở đây</h4>
@@ -69,6 +100,7 @@ export default{
                         <th scope="col">Xuất xứ</th>
                         <th scope="col">Trạng thái</th>
                         <th scope="col">Số lượng trong kho</th>
+                        <th scope="col">Số lượng đã bán</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,6 +116,7 @@ export default{
                         <td>{{ product.origin }}</td>
                         <td>{{ product.status }}</td>
                         <td>{{ product.amountinstock }}</td>
+                        <td>{{ getQuantitySold(product._id) }}</td>
                     </tr>
                 </tbody>
             </table>

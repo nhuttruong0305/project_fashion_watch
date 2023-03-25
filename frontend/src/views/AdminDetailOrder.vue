@@ -26,6 +26,9 @@ export default{
                 if(this.detailOrder.status == "Đã hủy"){
                     this.disableButton = true;
                 }
+                if(this.detailOrder.status == "Đã nhận hàng"){
+                    this.disableButton = true;
+                }
             }catch(error){
                 alert("Có lỗi xảy ra khi lấy thông tin chi tiết đơn hàng");
             }
@@ -81,7 +84,7 @@ export default{
                 <p>Địa chỉ nhận: {{ detailOrder.address }}</p>
                 <p>Tổng: {{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(detailOrder.total) }}</p>
 
-                <p v-if="disableButton == true">Trạng thái: Đã hủy</p>
+                <p v-if="disableButton == true">Trạng thái: {{ detailOrder.status }}</p>
                 <div v-else-if="disableButton == false">
                     <label for="input_status_order">Trạng thái:</label>
                     <select id="input_status_order" v-model="status_order">
