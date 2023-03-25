@@ -18,7 +18,7 @@ export default{
                 const response = await OrderService.getOrderById(this.$route.params.id);
                 this.detailOrder = response;
 
-                if(this.detailOrder.status == "Đã hủy"){
+                if(this.detailOrder.status != "Chưa xử lý"){
                     this.disableButton = true;
                 }
             }catch(error){

@@ -122,7 +122,7 @@ export default{
                         </div>
                         <div class="mb-3">
                             <label for="emailOrder" class="form-label">Email</label>
-                            <Field name="email" type="email" class="form-control" id="emailOrder" required v-model="email"/>
+                            <Field name="email" type="email" class="form-control" id="emailOrder" readonly required v-model="email"/>
                             <ErrorMessage class="errorText" name="email" />
                         </div>
 

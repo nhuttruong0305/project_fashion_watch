@@ -69,7 +69,7 @@ export default {
     <div id="list_product" class="row mt-5">
 
         <template v-for="product in products">
-            <div class="col-md-3 col-6 list_item_product" data-aos="flip-left">
+            <div v-if="product.status == 'Còn kinh doanh'" class="col-md-3 col-6 list_item_product" data-aos="flip-left">
                 <router-link :to="{name: 'DetailProduct', params: {id: `${product._id}`}}"  class="d-block">
                     <img :src="product.imageURL"
                         alt="">
