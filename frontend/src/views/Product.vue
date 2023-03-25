@@ -20,20 +20,22 @@ export default {
 
     methods: {
         async getProductByType() {
-            const response = await ProductService.getProductByType(this.$route.params.type);
-            this.products = response;
-            //Lấy các loại sản phẩm trong DB
-            const category_list = await ProductCategoryService.getAllProductCategory();
-            let isAll = true;
-            for(let i = 0; i < category_list.length; i++){
-                if(this.$route.params.type == category_list[i].number_type){
-                    this.category_name = category_list[i].category_name;
-                    isAll = false;
-                    break;
+            if(this.$route.params.type != undefined){
+                const response = await ProductService.getProductByType(this.$route.params.type);
+                this.products = response;
+                //Lấy các loại sản phẩm trong DB
+                const category_list = await ProductCategoryService.getAllProductCategory();
+                let isAll = true;
+                for(let i = 0; i < category_list.length; i++){
+                    if(this.$route.params.type == category_list[i].number_type){
+                        this.category_name = category_list[i].category_name;
+                        isAll = false;
+                        break;
+                    }
                 }
-            }
-            if(isAll == true){
-                this.category_name="Tất cả sản phẩm";
+                if(isAll == true){
+                    this.category_name="Tất cả sản phẩm";
+                }
             }
         },
     }

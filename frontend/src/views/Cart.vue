@@ -99,8 +99,6 @@ export default {
                             <button @click="adjustProductQuantity('decrease', product._id)" style="border: 1px solid black;">-</button>
                         </div> 
                     </td>
-
-                    <td class="info_product_in_cart_body"> {{ product.quantity }}  </td>
                     <td class="info_product_in_cart_body">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price*product.quantity)}}</td>
                     <td class="info_product_in_cart_body"><i style="cursor: pointer;"
                             @click="removeProductInCart(product._id)" class="fa-solid fa-trash"></i></td>
