@@ -11,12 +11,11 @@ export default{
     },
 
     watch: {
-        '$route': 'checkUserLogin',
+        '$route': 'checkUserLogin'
     },
 
     created(){
         this.checkUserLogin()
-        // setInterval(this.getNumberOfProductInCart(),10);
     },
 
     methods: {
@@ -47,8 +46,40 @@ export default{
 
         searchProductByKeyword(){
             this.$router.push({ name: 'SearchProduct', query: { keyword: this.keyword_to_find_product }});
-        }
+        },
 
+        // Đổi màu chữ có page hiện tại trên navbar
+        currentPage(){
+            let navLink = document.getElementsByClassName('nav-link');
+            for(let navLinkItem of navLink){
+                navLinkItem.addEventListener('click', function(){
+                    for(let navLinkItem2 of navLink){
+                        navLinkItem2.classList.remove("current-page");
+                    }
+                    navLinkItem.classList.add("current-page");
+                })
+            }  
+        },
+
+        //Set màu chữ cho nav-link trang chủ
+        navLinkHomePage(){
+            if(this.$router.currentRoute._value.name == "Home"){
+                let navLink = document.getElementsByClassName('nav-link');
+                for(let navLinkItem of navLink){
+                        navLinkItem.classList.remove("current-page");
+                    }
+                navLink[0].classList.add("current-page");
+            }
+        }
+    },
+    mounted(){
+        this.currentPage(),
+        this.navLinkHomePage()
+    },
+
+    //Có updated để có thể bấm về trang chủ từ breadcrumb vẫn có thể làm cho nav-link Trang chủ màu trắng
+    updated(){
+        this.navLinkHomePage()
     }
 }
 
@@ -104,7 +135,7 @@ export default{
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav w-100 justify-content-center">
                     <li class="nav-item mx-3">
-                        <router-link to="/" class="nav-link active" aria-current="page">TRANG CHỦ</router-link>
+                        <router-link to="/" class="nav-link">TRANG CHỦ</router-link>
                     </li>
                     <li class="nav-item dropdown mx-3">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -113,9 +144,6 @@ export default{
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><router-link :to = "{name: 'Product', params: {type: 'all'}}" class="dropdown-item" href="#" >Tất cả sản phẩm</router-link></li>
-                            <!-- <li><router-link :to = "{name: 'Product', params: {type: 1}}" class="dropdown-item" href="#">Đồng hồ nam</router-link></li>
-                            <li><router-link :to = "{name: 'Product', params: {type: 2}}" class="dropdown-item" href="#">Đồng hồ nữ</router-link></li>
-                            <li><router-link :to = "{name: 'Product', params: {type: 3}}" class="dropdown-item" href="#">Phụ kiện</router-link></li> -->
                             <li v-for="category in category_list"><router-link :to = "{name: 'Product', params: {type: `${category.number_type}`}}" class="dropdown-item" href="#" >{{ category.category_name }}</router-link></li>
                         </ul>
                     </li>
@@ -124,11 +152,9 @@ export default{
                     </li>
                     <li class="nav-item mx-3">
                         <router-link to="/news" class="nav-link">TIN TỨC</router-link>
-                        <!-- bổ sung sau khi thêm trang tin tức -->
                     </li>
                     <li class="nav-item mx-3">
                         <router-link to="/contact" class="nav-link">LIÊN HỆ</router-link>
-                        <!-- bổ sung sau khi thêm trang liên hệ -->
                     </li>
                 </ul>
             </div>
@@ -242,5 +268,13 @@ export default{
 
 #btn_toogle{
     margin: 0 auto;
+}
+
+.nav-link{
+    color: black;
+}
+
+.current-page{
+    color: white;
 }
 </style>

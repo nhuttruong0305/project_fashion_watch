@@ -1,3 +1,12 @@
+<script>
+import BackToTop from './BackToTop.vue';
+    export default{
+        components:{
+            BackToTop,
+        }
+    }
+</script>
+
 <template>
 <!-- template đã check, nhớ bổ sung link trang góp ý     -->
     <div id="top_footer">
@@ -74,11 +83,11 @@
         <div id="copyright_footer">
             <p class="container">Copyright © 2022, Chastain Powered by B1910015</p>
         </div>
+        <BackToTop></BackToTop>
     </footer>
-
 </template>
 
-<style scoped>
+<style scoped> 
 /* css ở đây đã check */
 #top_footer{
     background-color: #f5f5f5;

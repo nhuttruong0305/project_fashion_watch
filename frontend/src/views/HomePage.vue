@@ -131,7 +131,7 @@ export default{
         <h4 class="text-center title_section_home"><span>FLASH SALE HÀNG TUẦN</span></h4>
         <div class="container mt-5">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-5" data-aos="zoom-in">
                     <img id="img_flash_sale_home" class="d-block" src="https://bizweb.dktcdn.net/100/438/171/products/sp10-c071025e-52d6-4c86-8e35-21f600ee136b.jpg?v=1632724245347" alt="">
                 </div>
                 <div style="padding: 30px" class="col-md-5">

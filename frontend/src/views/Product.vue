@@ -14,7 +14,7 @@ export default {
         '$route': 'getProductByType',
     },
 
-    created() { //đổi lại mounted thử
+    created() { 
         this.getProductByType()
     },
 

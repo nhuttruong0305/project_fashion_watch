@@ -46,7 +46,7 @@ export default{
         }
     },
 
-    mounted(){
+    created(){
         this.getUserInfo(),
         this.getProductsInCart()
     },
