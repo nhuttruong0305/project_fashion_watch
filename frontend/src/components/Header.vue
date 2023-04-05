@@ -74,11 +74,11 @@ export default{
     },
     mounted(){
         this.currentPage()  //Phương thức này được gọi để sau khi vue hiển thị nội dung ra màn hình sẽ gán các sự kiện cho các nút nhấn ở navbar
-        // this.navLinkHomePage() //Phương thức này để khi truy cập vào trang chủ trong lần đầu sẽ hiện chữ trang chủ màu trắng
+        this.navLinkHomePage() //Phương thức này để khi truy cập vào trang chủ trong lần đầu sẽ hiện chữ trang chủ màu trắng
         // this.checkUserLogin() hàm này nếu đặt ở đây thì không thể hiện tên người dùng và nút đăng xuất dc, phải để trong updated
     },
 
-    updated(){
+    updated(){ //updated này còn có thể update lại số sản phẩm trong giỏ hàng
         // this.currentPage()
         this.navLinkHomePage() //Có updated để có thể bấm về trang chủ từ breadcrumb vẫn có thể làm cho nav-link Trang chủ màu trắng
         this.checkUserLogin() //không có dòng code này thì sau khi đăng nhập, dù có chuyển qua các trang khác thì phần header (chỗ nút đăng nhập đăng ký cũng ko thể đổi thành tên người dùng và nút đăng xuất), phải reset lại trang
