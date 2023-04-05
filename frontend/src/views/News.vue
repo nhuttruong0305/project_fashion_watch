@@ -15,10 +15,10 @@
         <h3 id="title_news">TIN TỨC</h3>
         <div class="row">
             <div class="col-md-6">
-                <img id="img_top_news" src="../assets/img/news/t1.webp" alt="">
+                <router-link to="news/news1"><img id="img_top_news" src="../assets/img/news/t1.webp" alt=""></router-link>
             </div>
             <div class="col-md-6">
-                <a href="" class="link_news">Cách chọn mua dây da đồng hồ theo phong thủy mà bạn nên biết</a>
+                <router-link to="news/news1" class="link_news">Cách chọn mua dây da đồng hồ theo phong thủy mà bạn nên biết</router-link>
                 <div>
                     <span class="watch_news">Watch</span><i class="fa-regular fa-clock"></i><span style="margin-left:15px;">1/4/2023</span>
                 </div>
@@ -29,12 +29,11 @@
         </div>
 
         <div class="row mt-4">
-
             <div class="col-sm-6 col-md-4 mt-3">
                 <div>
-                    <img class="img_other_news" src="../assets/img/news/t2.webp" alt="">
+                    <router-link to="/news/news2"><img class="img_other_news" src="../assets/img/news/t2.webp" alt=""></router-link>
                 </div>
-                <a href="" class="link_news">Cách phối dây da đơn giản mà cực kỳ hiệu quả</a>
+                <router-link to="/news/news2" class="link_news">Cách phối dây da đơn giản mà cực kỳ hiệu quả</router-link>
                 <div>
                     <span class="watch_news">Watch</span><i class="fa-regular fa-clock"></i><span style="margin-left:15px;">9/3/2023</span>
                 </div>
@@ -45,9 +44,9 @@
 
             <div class="col-sm-6 col-md-4 mt-3">
                 <div>
-                    <img class="img_other_news" src="../assets/img/news/t3.webp" alt="">
+                    <router-link to="/news/news3"><img class="img_other_news" src="../assets/img/news/t3.webp" alt=""></router-link>
                 </div>
-                <a href="" class="link_news">Hướng dẫn cách lên dây cót đồng hồ cơ đúng cách</a>
+                <router-link to="/news/news3" class="link_news">Hướng dẫn cách lên dây cót đồng hồ cơ đúng cách</router-link>
                 <div>
                     <span class="watch_news">Watch</span><i class="fa-regular fa-clock"></i><span style="margin-left:15px;">9/2/2023</span>
                 </div>
@@ -58,9 +57,9 @@
 
             <div class="col-sm-6 col-md-4 mt-3">
                 <div>
-                    <img class="img_other_news" src="../assets/img/news/t4.webp" alt="">
+                    <router-link to="/news/news4"><img class="img_other_news" src="../assets/img/news/t4.webp" alt=""></router-link>
                 </div>
-                <a href="" class="link_news">Mẹo nhỏ giúp bạn bảo quản và sử dụng đồng hồ đeo tay đúng cách</a>
+                <router-link to="/news/news4" class="link_news">Mẹo nhỏ giúp bạn bảo quản và sử dụng đồng hồ đeo tay đúng cách</router-link>
                 <div>
                     <span class="watch_news">Watch</span><i class="fa-regular fa-clock"></i><span style="margin-left:15px;">9/4/2023</span>
                 </div>
@@ -71,9 +70,9 @@
 
             <div class="col-sm-6 col-md-4 mt-3">
                 <div>
-                    <img class="img_other_news" src="../assets/img/news/t5.webp" alt="">
+                    <router-link to="/news/news5"><img class="img_other_news" src="../assets/img/news/t5.webp" alt=""></router-link>
                 </div>
-                <a href="" class="link_news">Cách chỉnh ngày giờ trên đồng hồ 6 kim 3 nút đơn giản</a>
+                <router-link to="/news/news5" class="link_news">Cách chỉnh ngày giờ trên đồng hồ 6 kim 3 nút đơn giản</router-link>
                 <div>
                     <span class="watch_news">Watch</span><i class="fa-regular fa-clock"></i><span style="margin-left:15px;">1/4/2023</span>
                 </div>
@@ -84,9 +83,9 @@
 
             <div class="col-sm-6 col-md-4 mt-3">
                 <div>
-                    <img class="img_other_news" src="../assets/img/news/t6.webp" alt="">
+                    <router-link to="/news/news6"><img class="img_other_news" src="../assets/img/news/t6.webp" alt=""></router-link>
                 </div>
-                <a href="" class="link_news">Cách làm mềm dây da đồng hồ, dễ chịu khi đeo</a>
+                <router-link to="/news/news6" class="link_news">Cách làm mềm dây da đồng hồ, dễ chịu khi đeo</router-link>
                 <div>
                     <span class="watch_news">Watch</span><i class="fa-regular fa-clock"></i><span style="margin-left:15px;">3/3/2023</span>
                 </div>
@@ -97,9 +96,9 @@
 
             <div class="col-sm-6 col-md-4 mt-3">
                 <div>
-                    <img class="img_other_news" src="../assets/img/news/t7.webp" alt="">
+                    <router-link to="/news/news7"><img class="img_other_news" src="../assets/img/news/t7.webp" alt=""></router-link>
                 </div>
-                <a href="" class="link_news">Hướng dẫn cách dùng đồng hồ G-shock để tìm điện thoại</a>
+                <router-link to="/news/news7" class="link_news">Hướng dẫn cách dùng đồng hồ G-shock để tìm điện thoại</router-link>
                 <div>
                     <span class="watch_news">Watch</span><i class="fa-regular fa-clock"></i><span style="margin-left:15px;">3/2/2023</span>
                 </div>

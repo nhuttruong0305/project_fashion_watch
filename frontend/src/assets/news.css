@@ -1,0 +1,17 @@
+.breadcrumb-item+.breadcrumb-item::before {
+    content: ">" !important;
+    color: #fff;
+    font-weight: 700;
+}
+
+.title_news{
+    padding-bottom: 12px;
+    border-bottom: 2px solid #1097cf;
+    margin-bottom: 30px;
+}
+
+.img_news{
+    display: block;
+    width: 55%;
+    margin: 30px auto;
+}

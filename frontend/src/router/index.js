@@ -30,6 +30,13 @@ import AdminSearchOrder from "../views/AdminSearchOrder.vue";
 import AdminAccount from "../views/AdminAccount.vue";
 import AdminSearchAccount from "../views/AdminSearchAccount.vue";
 import AdminSearchOrderByPhoneNumber from "../views/AdminSearchOrderByPhoneNumber.vue";
+import News1 from "../views/News1.vue";
+import News2 from "../views/News2.vue";
+import News3 from "../views/News3.vue";
+import News4 from "../views/News4.vue";
+import News5 from "../views/News5.vue";
+import News6 from "../views/News6.vue";
+import News7 from "../views/News7.vue";
 
 const routes = [
     {
@@ -243,7 +250,70 @@ const routes = [
         path: "/admin/search_order_by_phonenumber",
         name: "AdminSearchOrderByPhoneNumber",
         component: AdminSearchOrderByPhoneNumber,
-    }
+    },
+    {
+        path: "/news/news1",
+        name: "News1",
+        components:{
+            default: News1,
+            header: Header,
+            footer: Footer, 
+        } 
+    },
+    {
+        path: "/news/news2",
+        name: "News2",
+        components:{
+            default: News2,
+            header: Header,
+            footer: Footer, 
+        } 
+    },
+    {
+        path: "/news/news3",
+        name: "News3",
+        components:{
+            default: News3,
+            header: Header,
+            footer: Footer, 
+        } 
+    },
+    {
+        path: "/news/news4",
+        name: "News4",
+        components:{
+            default: News4,
+            header: Header,
+            footer: Footer, 
+        } 
+    },
+    {
+        path: "/news/news5",
+        name: "News5",
+        components:{
+            default: News5,
+            header: Header,
+            footer: Footer, 
+        } 
+    },
+    {
+        path: "/news/news6",
+        name: "News6",
+        components:{
+            default: News6,
+            header: Header,
+            footer: Footer, 
+        } 
+    },
+    {
+        path: "/news/news7",
+        name: "News7",
+        components:{
+            default: News7,
+            header: Header,
+            footer: Footer, 
+        } 
+    },
 ];
 
 const router = createRouter({

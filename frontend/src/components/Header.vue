@@ -10,9 +10,9 @@ export default{
         }
     },
 
-    watch: {
-        '$route': 'checkUserLogin'
-    },
+    // watch: {
+    //     '$route': 'checkUserLogin'
+    // },
 
     created(){
         this.checkUserLogin()
@@ -73,13 +73,16 @@ export default{
         }
     },
     mounted(){
-        this.currentPage(),
-        this.navLinkHomePage()
+        this.currentPage()  //Phương thức này được gọi để sau khi vue hiển thị nội dung ra màn hình sẽ gán các sự kiện cho các nút nhấn ở navbar
+        // this.navLinkHomePage() //Phương thức này để khi truy cập vào trang chủ trong lần đầu sẽ hiện chữ trang chủ màu trắng
+        // this.checkUserLogin() hàm này nếu đặt ở đây thì không thể hiện tên người dùng và nút đăng xuất dc, phải để trong updated
     },
 
-    //Có updated để có thể bấm về trang chủ từ breadcrumb vẫn có thể làm cho nav-link Trang chủ màu trắng
     updated(){
-        this.navLinkHomePage()
+        // this.currentPage()
+        this.navLinkHomePage() //Có updated để có thể bấm về trang chủ từ breadcrumb vẫn có thể làm cho nav-link Trang chủ màu trắng
+        this.checkUserLogin() //không có dòng code này thì sau khi đăng nhập, dù có chuyển qua các trang khác thì phần header (chỗ nút đăng nhập đăng ký cũng ko thể đổi thành tên người dùng và nút đăng xuất), phải reset lại trang
+        //code dòng 84 tương đương code từ dòng 13 - 15, dùng để sau khi đăng nhập sẽ hiển thị tên người dùng và nút đăng xuất, có thể dùng 1 trong 2 cách
     }
 }
 
