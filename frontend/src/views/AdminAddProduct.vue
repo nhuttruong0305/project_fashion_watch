@@ -2,9 +2,11 @@
 import NavAdminPage from '../components/NavAdminPage.vue';
 import ProductCategoryService from '../services/admin_product_category.service';
 import ProductService from '../services/product.service';
+import BackToTopVue from '../components/BackToTop.vue';
 export default{
     components:{
         NavAdminPage,
+        BackToTopVue,
     },
 
     data(){
@@ -132,6 +134,7 @@ export default{
             </div>
         </div>
     </div>
+    <BackToTopVue></BackToTopVue>
 </template>
 
 <style scoped>

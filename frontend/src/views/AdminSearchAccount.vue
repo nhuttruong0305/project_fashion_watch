@@ -1,9 +1,11 @@
 <script>
 import authService from '../services/auth.service';
 import NavAdminPage from '../components/NavAdminPage.vue';
+import BackToTop from '../components/BackToTop.vue';
 export default {
     components: {
         NavAdminPage,
+        BackToTop
     },
 
     data() {
@@ -97,6 +99,7 @@ export default {
             </table>
         </div>
     </div>
+    <BackToTop></BackToTop>
 </template>
 
 <style scoped>

@@ -1,6 +1,7 @@
 <script>
 import ProductCategoryService from '../services/admin_product_category.service';
 import NavAdminPage from '../components/NavAdminPage.vue';
+import BackToTop from '../components/BackToTop.vue';
 export default{
     data(){
         return{
@@ -10,6 +11,7 @@ export default{
 
     components:{
         NavAdminPage,
+        BackToTop
     },
 
     created(){
@@ -71,6 +73,7 @@ export default{
             </div>
         </div>
     </div>  
+    <BackToTop></BackToTop>
 </template>
 
 <style scoped>
