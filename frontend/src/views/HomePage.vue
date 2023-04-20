@@ -159,8 +159,8 @@ export default{
         <h4 class="text-center title_section_home"><span>TIN MỚI NHẤT</span></h4>
         <div class="row mt-5">
             <div class="col-md-4" data-aos="flip-up">
-                <a class="d-block" href=""><img class="illustration_news" src="../assets/img/news/t2.webp" alt=""></a>
-                <h5><a href="" class="link_news">Cách phối dây da đơn giản mà cực kỳ hiệu quả</a></h5>
+                <router-link to="/news/news2" class="d-block"><img class="illustration_news" src="../assets/img/news/t2.webp" alt=""></router-link>
+                <h5><router-link to="/news/news2" class="link_news">Cách phối dây da đơn giản mà cực kỳ hiệu quả</router-link></h5>
                 <div>
                     <span class="watch_news">Watch</span>&nbsp;&nbsp;&nbsp;
                     <span>5/3/2023</span>
@@ -170,8 +170,8 @@ export default{
                 </div>
             </div>
             <div class="col-md-4" data-aos="flip-up">
-                <a class="d-block" href=""><img class="illustration_news" src="../assets/img/news/t3.webp" alt=""></a>
-                <h5><a href="" class="link_news">Hướng dẫn cách lên dây cót đồng hồ cơ đúng cách</a></h5>
+                <router-link class="d-block" :to="{name: 'News3'}"><img class="illustration_news" src="../assets/img/news/t3.webp" alt=""></router-link>
+                <h5><router-link :to="{name: 'News3'}" class="link_news">Hướng dẫn cách lên dây cót đồng hồ cơ đúng cách</router-link></h5>
                 <div>
                     <span class="watch_news">Watch</span>&nbsp;&nbsp;&nbsp;
                     <span>4/3/2023</span>
@@ -181,8 +181,8 @@ export default{
                 </div>
             </div>
             <div class="col-md-4" data-aos="flip-up">
-                <a class="d-block" href=""><img class="illustration_news" src="../assets/img/news/t4.webp" alt=""></a>
-                <h5><a href="" class="link_news">Mẹo nhỏ giúp bạn bảo quản và sử dụng đồng hồ đeo tay đúng cách</a></h5>
+                <router-link class="d-block" to="/news/news4"><img class="illustration_news" src="../assets/img/news/t4.webp" alt=""></router-link>
+                <h5><router-link :to="{name: 'News4'}" class="link_news">Mẹo nhỏ giúp bạn bảo quản và sử dụng đồng hồ đeo tay đúng cách</router-link></h5>
                 <div>
                     <span class="watch_news">Watch</span>&nbsp;&nbsp;&nbsp;
                     <span>1/2/2023</span>

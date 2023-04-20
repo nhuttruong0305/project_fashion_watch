@@ -232,7 +232,7 @@ import ProductCategoryService from "../services/admin_product_category.service";
 
 #price_of_detail_product{
     background-color: #1097cf;
-    width: 200px;
+    width: 300px;
     transform: skew(10deg);
     font-size: 30px;
 }
