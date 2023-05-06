@@ -19,7 +19,13 @@ export default{
         async getProductListByKeyword(){
             try{
                 const response = await ProductService.getProductByKeyword(this.$route.query.keyword);
-                this.product_list = response;
+                // console.log(response);
+                response.forEach(element => {
+                    if(element.status != "Ngừng kinh doanh"){
+                        this.product_list.push(element);
+                    }
+                });
+                // this.product_list = response;
             }catch(error){
                 alert("Có lỗi xảy ra khi lấy thông tin sản phẩm");
             }
