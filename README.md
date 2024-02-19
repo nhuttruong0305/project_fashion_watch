@@ -44,16 +44,19 @@ The necessary functions of an e-commerce website are built quite fully such as:
 
     * Product page
 ![alt text](image.png)  
+
     * Product detail page
+![alt text](image-1.png)
 
     * Login page
+
 
     * Registration page
     
     * Cart page
 
     * Order page
-
+- Administrator interface
     * Add new product page
 
     * Edit product page
