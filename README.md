@@ -49,10 +49,11 @@ The necessary functions of an e-commerce website are built quite fully such as:
 ![alt text](image-1.png)
 
     * Login page
-
+![image](https://github.com/B1910015LeNhutTruong/project_fashion_watch/assets/84178256/16229f26-c206-4808-9256-d3d35afe9d96)
 
     * Registration page
-    
+![image](https://github.com/B1910015LeNhutTruong/project_fashion_watch/assets/84178256/e166087b-95d5-47ca-8241-3dde0fe65d18)
+
     * Cart page
 
     * Order page
