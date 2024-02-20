@@ -40,6 +40,11 @@ The necessary functions of an e-commerce website are built quite fully such as:
 
 ## Demo
 - Customer interface
+    * Home page
+![image](https://github.com/B1910015LeNhutTruong/project_fashion_watch/assets/84178256/a24c6c7b-e9d5-4d2b-b069-325efb4db85d)
+![image](https://github.com/B1910015LeNhutTruong/project_fashion_watch/assets/84178256/ed36072a-d848-4fc0-9dd6-0e1ff5b6438f)
+![image](https://github.com/B1910015LeNhutTruong/project_fashion_watch/assets/84178256/b7c84a1e-0939-40a3-b0b7-23232f67f1de)
+
     * Product page
 ![alt text](image.png)  
 
